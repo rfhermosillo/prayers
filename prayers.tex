@@ -6,12 +6,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{multicol}
-%\usepackage{inconsolata}
+%\usepackage{inconsolata}% URLs don't have line breaks with this
 \usepackage{parskip}
 \usepackage{wasysym}
 %\usepackage[margin=0.5in]{geometry}
 %\usepackage{listings}
 %\usepackage{biblatex}
+\usepackage[hyphens]{url}% https://tex.stackexchange.com/a/175451/61108
 \usepackage[colorlinks=true,urlcolor={red},linkcolor={black}]{hyperref}
 
 % Disable section numbering, but keep section numbers in the table of contents
@@ -49,8 +50,7 @@
 \title{\textbf{Prayers}\date{\vspace{-10ex}}}\maketitle
 \tableofcontents\newpage
 
-%\begin{multicols}{2}
-\prayersection{Everyday Prayers}
+\prayersection{Prayers for Particular Times of the Day}
 \indulgencedprayertitle{Morning Prayer (includes \foreign{Actiones nostras})}
 % Combined from each of the morning prayers in My Prayer Book (p. 32)
 \linkednote{grant26}{A partial indulgence is granted for devoutly offering a prayer of supplication such as \foreign{Actiones nostras} at the beginning and end of the day.}
@@ -77,11 +77,11 @@ Amen.
 \indulgencedprayertitle{Grace After Meals (\foreign{Agimus tibi gratias})}
 % Text from My Prayer Book p. 26
 \linkednote{grant26}{A partial indulgence is granted for devoutly offering a prayer of thanksgiving such as this one before and after meals.}
-We give you thanks, Almighty God, for these and all Your blessings;
+We give You thanks, Almighty God, for these and all Your blessings;
 You live and reign for ever and ever.
 Amen.
 \newpage
-\indulgencedprayertitle{Evening Prayer}
+\indulgencedprayertitle{Evening Prayer from the Byzantine Tradition}
 \linkednote{grant23}{A partial indulgence is granted for devoutly reciting this prayer from the Byzantine Tradition.}
 In the evening, in the morning, and at noon, we praise You, we bless You,
 we give You thanks, and we beg You, Master of the universe, grant that our hearts not yield to evil words but free us from all who try to enslave our souls, because our eyes are turned to You, O Lord, and we have placed our hope in You.
@@ -95,6 +95,23 @@ We offer You the work of our hands as a sacrifice before Your sight.
 We make this prayer through Christ our Lord.
 Amen.
 
+\prayertitle{Prayer of a Lay Apostle}
+\label{prayer:lay_apostle}
+Thank You, my God, for the day that is ending, thank You for the coming night.
+Bring sleep to the weary, bring repose to those I love, and give me rest until tomorrow.
+
+All was not fine, perfect, and beautiful today.
+Give me strength to do better tomorrow.
+
+In this day that is ending I have not been what I should have been.
+Make me better, my God, less harsh towards others, more gentle, more patient.
+Make me, too, more determined, more demanding of myself, more truthful in speaking, more faithful in my promises, more active in my work, more obedient and more submissive;
+let me be cheerful, too, and may tomorrow be a finer, fuller day than this.
+
+Thank You, my God, for the day that is ending, thank You for the coming night.
+Bring sleep to the weary, bring repose to those I love, and give me rest until tomorrow.
+
+\prayersection{Everyday Prayers}
 \prayertitle{The Grail Prayer}
 % Given by many sources on the Internet, also listed as a ``Morning Prayer'' in the Laudate app.
 Lord Jesus,
@@ -104,8 +121,8 @@ I give You my eyes to see as You do.
 I give You my tongue to speak Your words.
 I give You my mind that You may think in me.
 I give You my spirit that You may pray in me.
-Above all, I give You my heart that You may love in me, Your Father, and all mankind.
-I give you my whole self that You may grow in me, so that it is You, Lord Jesus
+Above all, I give You my heart that You may love in me Your Father and all mankind.
+I give You my whole self that You may grow in me, so that it is You, Lord Jesus,
 who live and work and pray in me.
 
 \prayertitle{Prayer for Goodness}
@@ -134,7 +151,22 @@ a strong love that will make me conquer all difficulties to please You;
 a persevering love that will never be dissolved.
 Amen.
 
+\prayertitle{Prayer for Grace}
+\label{prayer:grace}
+Oh my God, You know my weakness and failings, and that without Your help I can accomplish nothing for the good of souls, my own and others'.
+Grant me, therefore, the help of Your grace.
+Grant it according to my particular needs this day.
+Enable me to see the task You will set before me in the daily routine of my life, and help me work hard at my appointed tasks.
+Teach me to bear patiently all the trials of suffering or failure that may come to me today. Amen.
+
+\prayertitle{Prayer of Resolution}
+\label{prayer:resolution}
+Adorable Jesus, my Savior and Master, model of all perfection, I resolve -- and will try this day -- to imitate Your example, to be like You, mild, humble, chaste, zealous, charitable, and resigned.
+I will redouble my efforts to see Your image in all those I meet and deal with this day, and to be as helpful to them as I would be to You.
+I resolve to avoid this day all those sins which I have committed heretofore and which I now sincerely desire to give up forever. Amen.
+
 \indulgencedprayertitle{An Act of Faith}
+\label{prayer:act_of_faith}
 \linkednote{grant28}{A partial indulgence is granted for reciting an Act of Faith, Hope, and Charity.}
 O God,
 I firmly believe all the truths that You have revealed and that You teach us through Your Church, for You are truth itself and can neither deceive nor be deceived.
@@ -148,7 +180,7 @@ I hope with complete trust that You will give me, through the merits of Jesus Ch
 \linkednote{grant28}{A partial indulgence is granted for reciting an Act of Faith, Hope, and Charity.}
 O God,
 I love You with my whole heart above all things, because You are infinitely good; and for Your sake I love my neighbor as I love myself.
-\newpage
+
 \indulgencedprayertitle{An Act of Spiritual Communion}
 \linkednote{grant8}{A partial indulgence is granted for reciting this prayer.}
 My Jesus, I believe that You are in the Blessed Sacrament.
@@ -184,7 +216,7 @@ Devoutly kneeling before Your Majesty,
 we earnestly pray that, since You see the limits of our human weakness, You would not in anger blame us for our disobedience, but with Your boundless pity cleanse us, teach us, and comfort us;
 and since if You do not help us, we cannot do what is well-pleasing in Your sight, let Your grace come to help us, that we may live to our own well-being, ever friends with You.
 
-\prayertitle{Prayer of the Sanctuary}
+\indulgencedprayertitle{Prayer of the Sanctuary}
 \linkednote{grant23}{A partial indulgence is granted for devoutly reciting this prayer from the Chaldean Tradition.}
 Before the tremendous throne of Your majesty, at the exalted place of Your divinity, the majestic seat of Your glory and the sublime throne of Your sovereignty, where Your servants the Cherubim continuously sing hymns and where Your glorifiers the Seraphim sing unceasingly the ``Sanctus,'' we bow down with fear, adore with trembling, give thanks, and glorify You without ceasing, at all times, O Lord of the universe, Father, Son, and Holy Spirit, for all ages.
 
@@ -198,7 +230,7 @@ Make us witnesses to Your goodness, full of love, of strength and of faith, for 
 Amen.
 
 \prayertitle{For the New Evangelization}
-% Modified slightly from http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-new-evangelization.cfm
+\label{prayer:new_evangelization}
 Heavenly Father, stir in my soul the desire to renew my faith and deepen my relationship with Your Son, our Lord Jesus Christ, so that I might truly believe in and live the Good News.   
 Open my heart to hear the Gospel and grant me the confidence to proclaim the Good News to others.
 Pour out Your Spirit, so that I might be strengthened to go forth and witness to the Gospel in my everyday life through my words and actions.  
@@ -210,29 +242,6 @@ If not the truth of the Gospel, then what shall I proclaim?
 
 God, our Father, I pray that through the Holy Spirit I might hear the call of the New Evangelization to deepen my faith, grow in confidence to proclaim the Gospel and boldly witness to the saving grace of Your Son, Jesus Christ, who lives and reigns with You, in the unity of the Holy Spirit, one God, for ever and ever.
 Amen.
-
-\prayertitle{For the Church Under Persecution}
-% My Prayer Book, p. 259
-Father, in the mystery of Your providence the Church was to share in the sufferings of Christ Your Son.
-Give those who suffer persecution for their faith a share also in the patience and love of Your Son, that they may be true and faithful witnesses to His promise of resurrection and eternal life.
-Amen.
-
-\prayertitle{For Healing Victims of Abuse}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-healing-victims-of-abuse.cfm
-God of endless love, ever caring, ever strong, always present, always just:
-You gave your only Son to save us by the blood of His cross.
-
-Gentle Jesus, shepherd of peace, join to Your own suffering the pain of all who have been hurt in body, mind, and spirit by those who betrayed the trust placed in them.
-
-Hear the cries of our brothers and sisters who have been gravely harmed, and the cries of those who love them.
-Soothe their restless hearts with hope, steady their shaken spirits with faith.
-Grant them justice for their cause, enlightened by Your truth.
-
-Holy Spirit, comforter of hearts, heal Your people's wounds and transform brokenness into wholeness.
-Grant us the courage and wisdom, humility and grace, to act with justice.
-Breathe wisdom into our prayers and labors.
-Grant that all harmed by abuse may find peace in justice.
-We ask this through Christ, our Lord. Amen.
 
 \prayertitle{For the Sick}
 % My Prayer Book, p. 262
@@ -259,7 +268,7 @@ Even though their bodies weaken, grant that their spirit may be strong; may they
 Amen.
 
 \prayertitle{Prayer to Overcome Indifference}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-overcome-indifference.cfm
+\label{prayer:indifference}
 All too often, Lord, we turn away from the world's many problems, which seem too big, too complex, or too far away.
 Forgive us our indifference.
 
@@ -276,8 +285,55 @@ of communities that reach out and dialogue and where diverse people creatively c
 Help us to be people of solidarity and action, so moved by prayer, encounter, and understanding that peace can become a reality.
 Amen.
 
+\prayertitle{For the Poor}
+\label{prayer:poor}
+God of Justice, open our eyes to see You in the face of the poor.
+Open our ears to hear You in the cries of the exploited.
+Open our mouths to defend You in the public squares as well as in private deeds.
+Remind us that what we do to the least ones, we do to You.
+Amen.
+
+\prayertitle{For the Marginalized}
+\label{prayer:marginalized}
+Lord, may those who are deprived of their human needs, and their human rights, be given the dignity which You confer on all Your people.
+Change our hearts and move us to love as the image of Christ those who are forgotten or thrown away, and especially the poor, the sick, and the aged.
+May Christ lead us to all who are lonely or afraid: teenagers on the street, old people in nursing homes, prisoners with no one to visit them, and all whom the world has forgotten.
+May we cherish the gifts God has given those who are mentally disabled,
+and in their lives hear the voice of our loving God.
+May we value, as a priceless gift from God, each human life of all who are forgotten or cast off.
+
+\prayertitle{Prayer to End Trafficking}
+\label{prayer:trafficking}
+Loving Father, we seek Your divine protection for all who are exploited and enslaved.
+For those forced into labor, trafficked into sexual slavery, and denied freedom.
+We beseech You to release them from their chains.
+Grant them protection, safety, and empowerment.
+Restore their dignity and provide them a new beginning.
+Show us how we might end exploitation by addressing its causes.
+Help us reach out in support of victims and survivors of human trafficking.
+Make us instruments of Your spirit for their liberation.
+For this we pray through our Lord Jesus Christ, who lives and reigns with You in the unity of the Holy Spirit, one God, forever and ever.
+Amen.
+
+\prayertitle{For Healing Victims of Abuse}
+\label{prayer:healing_victims_abuse}
+God of endless love, ever caring, ever strong, always present, always just:
+You gave Your only Son to save us by the blood of His cross.
+
+Gentle Jesus, shepherd of peace, join to Your own suffering the pain of all who have been hurt in body, mind, and spirit by those who betrayed the trust placed in them.
+
+Hear the cries of our brothers and sisters who have been gravely harmed, and the cries of those who love them.
+Soothe their restless hearts with hope, steady their shaken spirits with faith.
+Grant them justice for their cause, enlightened by Your truth.
+
+Holy Spirit, comforter of hearts, heal Your people's wounds and transform brokenness into wholeness.
+Grant us the courage and wisdom, humility and grace, to act with justice.
+Breathe wisdom into our prayers and labors.
+Grant that all harmed by abuse may find peace in justice.
+We ask this through Christ, our Lord. Amen.
+
 \prayertitle{For Charity in Truth}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-charity-in-truth.cfm
+\label{prayer:charity_truth}
 Father, Your truth is made known in Your Word.
 Guide us to seek the truth of the human person.
 Teach us the way to love because You are Love.
@@ -292,108 +348,10 @@ Give us a spirit of solidarity and make us one human family.
 
 We ask this through Christ our Lord. Amen.
 
-\prayertitle{For the Poor}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-poor.cfm from Being Neighbor, the Catechism and Social Justice, Catholic Campaign for Human Development, ©1998 United States Conference of Catholic Bishops 
-God of Justice, open our eyes to see You in the face of the poor.
-Open our ears to hear You in the cries of the exploited.
-Open our mouths to defend You in the public squares as well as in private deeds.
-Remind us that what we do to the least ones, we do to You.
-Amen.
-
-\prayertitle{Prayer to End Trafficking}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-end-trafficking.cfm
-Loving Father, we seek Your divine protection for all who are exploited and enslaved.
-For those forced into labor, trafficked into sexual slavery, and denied freedom.
-We beseech You to release them from their chains.
-Grant them protection, safety, and empowerment.
-Restore their dignity and provide them a new beginning.
-Show us how we might end exploitation by addressing its causes.
-Help us reach out in support of victims and survivors of human trafficking.
-Make us instruments of Your spirit for their liberation.
-For this we pray through our Lord Jesus Christ, who lives and reigns with You in the unity of the Holy Spirit, one God, forever and ever.
-Amen.
-
-\prayertitle{For the Marginalized}
-% Modified from http://www.usccb.org/about/pro-life-activities/prayers/intercessory-prayers-the-marginalized.cfm
-Lord, may those who are deprived of their human needs, and their human rights, be given the dignity which You confer on all Your people.
-Change our hearts and move us to love as the image of Christ those who are forgotten or thrown away, and especially the poor, the sick, and the aged.
-May Christ lead us to all who are lonely or afraid: teenagers on the street, old people in nursing homes, prisoners with no one to visit them, and all whom the world has forgotten.
-May we cherish the gifts God has given those who are mentally disabled,
-and in their lives hear the voice of our loving God.
-May we value, as a priceless gift from God, each human life of all who are forgotten or cast off.
-
-\prayertitle{For the Church}
-% My Prayer Book, p. 258
-Father, in the new covenant instituted by Christ Your Son, You gather Your people in the unity of Your Spirit from all the nations of the earth.
-Keep Your Church faithful to her mission as a leaven in the world, renewing all peoples in Christ and transforming them into Your own family.
-Amen.
-
-\prayertitle{For our Parish}
-O God, You have made us the Church of Your dear Son.
-Make our parish a family of one heart and mind in love toward You.
-Grant that our common life and world may be an example to all about us.
-Guide our pastor and his assistants in their work.
-Acknowledge the intercessions of our patron; and keep us secure in Your love.
-Amen.
-
-\prayertitle{For the Pope}
-% My Prayer Book, p. 258
-Father, as successor to the Apostle Peter You have chosen Your servant \insertname\ to be the vicar of Christ on earth and shepherd of the whole flock.
-May he strengthen his brothers, and may the whole Church be in communion with him in the bond of unity, love, and peace, that all men may receive from You, the shepherd and bishop of their souls, truth and eternal life.
-Amen.
-
-\prayertitle{For the Bishop}
-% My Prayer Book, p. 260
-God our Father, You have entrusted to Your servant \insertname, as a successor to the Apostles, the care of the diocese of \insertname.
-Give him Your Spirit of wisdom and courage, of understanding and love.
-Keep him faithful to his mission that he may build up Your Church, the universal sacrament of salvation.
-Amen.
-
-\prayertitle{For Priests}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-priests.cfm
-Gracious and loving God, we thank You for the gift of our priests.
-Through them, we experience Your presence in the sacraments.
-
-Help our priests to be strong in their vocation.
-Set their souls on fire with love for Your people.
-
-Grant them the wisdom, understanding, and strength they need to follow in the footsteps of Jesus.
-Inspire them with the vision of Your Kingdom.
-
-Give them the words they need to spread the Gospel.
-Allow them to experience joy in their ministry.
-
-Help them to become instruments of Your divine grace.
-
-We ask this through Jesus Christ, who lives and reigns as our Eternal Priest.
-Amen.
-
-\prayertitle{For Priests \#2}
-% My Prayer Book, p. 260
-Father, You appointed Your only Son as the eternal high priest.
-Grant that those He has chosen to be ministers of word and sacrament may be faithful in their ministry until the day of His coming.
-Amen.
-
-\prayertitle{For Religious}
-% My Prayer Book, p. 261
-Father, every good intention has its origin and fulfillment in You.
-Guide Your people along the path of salvation and look kindly on those who have left all things to follow Christ in chastity, poverty, and obedience, and to consecrate themselves to You.
-In their service to You, Father, and to all their brothers and sisters, may they give faithful witness to Christ.
-Amen.
-
-\prayertitle{For Vocations}
-% http://www.usccb.org/beliefs-and-teachings/vocations/upload/Prayer-for-Vocations-Card-2014.pdf
-God our Father, we thank You for calling men and women to serve in Your Son’s Kingdom as priests, deacons, and consecrated persons.
-Send Your Holy Spirit to help others to respond generously and courageously to Your call.
-May our community of faith support vocations of sacrificial love in our youth and young adults.
-Through our Lord Jesus Christ, who lives and reigns with You in the unity of the Holy
-Spirit, one God, forever and ever.
-Amen.
-
 \indulgencedprayertitle{For the Unity of Christians (\foreign{Omnipotens et misericors Deus})}
 \linkednote{grant11}{A partial indulgence is granted for devoutly reciting this prayer.}
 Almighty and merciful God, who wished to gather the scattered nations into one people
-through your Son, grant that those who glory in the name of Christians may put aside
+through Your Son, grant that those who glory in the name of Christians may put aside
 division and become one in truth and charity, and that all men may be illumined by the
 true faith and brought together into the fraternal communion of one Church.
 Through Christ our Lord. Amen.
@@ -405,14 +363,6 @@ May the divisions between Christians be overcome.
 Make us one in faith and love as we walk with Christ to the joy of Your eternal kingdom.
 Amen.
 
-\prayertitle{For Civic Leaders}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-civic-leaders.cfm which cites Catholic Household Blessings and Prayers book
-God our Father, You guide everything in wisdom and love.
-Accept the prayers we offer for our nation.
-In Your goodness, watch over those in authority so that people everywhere may enjoy freedom, security, and peace.
-We ask this through Christ our Lord.
-Amen.
-
 \prayertitle{Prayer to Live the Gospel}
 Loving Father, open our hearts to hidden realities:
 Your love for all people,
@@ -421,7 +371,7 @@ Your call to justice and peace.
 May the sacraments stir in us
 that same love for those with whom we worship and all members of our human family.
 
-Christ Jesus, help us to imitate your example:
+Christ Jesus, help us to imitate Your example:
 healing the sick,
 welcoming the stranger,
 assisting the poor and vulnerable.
@@ -435,6 +385,10 @@ Your summons to live our faith daily
 as witnesses of justice and peace.
 May the sacraments move us to engage in love-inspired action that transforms us and the world.
 Amen.
+
+\indulgencedprayertitle{\foreign{Retribuere dignare, Domine}}
+\linkednote{grant24}{A partial indulgence is granted for devoutly reciting this prayer.}
+May it please You, O Lord, to reward with eternal life all those who do good to us for Your Name's sake. Amen.
 
 \indulgencedprayertitle{\foreign{Veni, Sancte Spiritus}}
 \linkednote{grant26}{A partial indulgence is granted for devoutly offering a prayer of supplication such as this one at the beginning and end of the day, when starting and completing work, or before and after meals.}
@@ -478,6 +432,11 @@ Who rose from death, be glory given,
 with Thou, O Holy Comforter,
 henceforth by all in earth and heaven.
 Amen.
+
+\prayertitle{Serenity Prayer}
+God, grant me the serenity to accept the things I cannot change,
+courage to change the things I can,
+and wisdom to know the difference.
 
 \prayertitle{Prayer of Thanksgiving}
 % Combined multiple prayers from My Prayer Book, pp. 248-249
@@ -545,13 +504,6 @@ Lead us to the pastures of Your holy will, O Effecter of good; by means of it fo
 Make us worthy to listen to Your voice alone, to follow only You, true and victorious Shepherd, and to receive from You the place You prepared for us in Your heavenly kingdom, O God and Lord Jesus Christ our Savior, who are blessed with the Father and Your Holy Spirit, now and always for ever and ever.
 Amen.
 
-\prayertitle{Prayer for Basic Rights}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-basic-rights.cfm which cites Being Neighbor: The Catechism and Social Justice, USCCB, April 1998
-Lord of Wisdom, awaken us to our duty to care for the basic needs of all people.
-Strengthen with hope people denied their human rights and freedoms.
-Provide us all with the voice to cry out for justice for the poor and the oppressed.
-Amen.
-
 \prayertitle{Prayer for Peace}
 % Combined from multiple prayers in My Prayer Book, pp. 254-255
 God, Creator of the world, You established the order which governs all ages.
@@ -584,14 +536,20 @@ Graciously grant that states and nations may be united through Your holy Church 
 and that all tongues and peoples may form one great choir to praise You king and ruler of the nations, prince of peace, immortal king of ages.
 Amen.
 
-\indulgencedprayertitle{\foreign{Retribuere dignare, Domine}}
-\linkednote{grant24}{A partial indulgence is granted for devoutly reciting this prayer.}
-May it please you, O Lord, to reward with eternal life all those who do good to us for Your Name's sake. Amen.
+\prayertitle{For Civic Leaders}
+% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-civic-leaders.cfm which cites Catholic Household Blessings and Prayers book
+God our Father, You guide everything in wisdom and love.
+Accept the prayers we offer for our nation.
+In Your goodness, watch over those in authority so that people everywhere may enjoy freedom, security, and peace.
+We ask this through Christ our Lord.
+Amen.
 
-\prayertitle{Serenity Prayer}
-God, grant me the serenity to accept the things I cannot change,
-courage to change the things I can,
-and wisdom to know the difference.
+\prayertitle{Prayer for Basic Rights}
+% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-basic-rights.cfm which cites Being Neighbor: The Catechism and Social Justice, USCCB, April 1998
+Lord of Wisdom, awaken us to our duty to care for the basic needs of all people.
+Strengthen with hope people denied their human rights and freedoms.
+Provide us all with the voice to cry out for justice for the poor and the oppressed.
+Amen.
 
 \prayertitle{Prayer in Times of Seeking God's Will}
 % Partially from http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-in-times-of-seeking-the-will-of-god.cfm
@@ -633,11 +591,11 @@ Give me these, Lord Jesus, and I ask for nothing more.
 
 \prayertitle{The Lord's Prayer}
 % My Prayer Book, p. 24
-Our Father, who is in heaven, hallowed is Your name.
-Your will be done on earth as it is in heaven.
+Our Father, who art in heaven, hallowed be Your name.
+Thy will be done on earth as it is in heaven.
 Give us this day our daily bread;
 and forgive us our trespasses as we forgive those who trespass against us;
-and lead us not into temptation, but deliver us from evil.
+and do not let us fall into temptation, but deliver us from evil.
 
 \indulgencedprayertitle{\foreign{Angele Dei}}
 \linkednote{grant18}{A partial indulgence is granted for devoutly invoking the care of one's guardian angel with this prayer.}
@@ -647,14 +605,14 @@ Angel of God, my guardian dear, to whom His love entrusts me here, enlighten and
 \linkednote{grant3}{A plenary indulgence is granted for publicly reciting this prayer on the solemnity of the Most Sacred Heart of Jesus;
 a partial indulgence is granted for its use in other circumstances.}
 Most sweet Jesus, whose overflowing charity for men is requited by so much forgetfulness, negligence, and contempt, behold us prostrate before You, eager to repair by a special act of homage the cruel indifference and injuries to which Your loving Heart is everywhere subjected.
-Mindful, alas! that we ourselves have had a share in such great indignities, which we now deplore from the depths of our hearts, we humbly ask Your pardon and declare our readiness to atone by voluntary expiation, not only for our own personal offenses, but also for the sins of those who, straying far from the path of salvation, refuse in their obstinate infidelity to follow you, their Shepherd and Leader, or, renouncing the promises of their Baptism, have cast off the sweet yoke of Your law.
+Mindful, alas! that we ourselves have had a share in such great indignities, which we now deplore from the depths of our hearts, we humbly ask Your pardon and declare our readiness to atone by voluntary expiation, not only for our own personal offenses, but also for the sins of those who, straying far from the path of salvation, refuse in their obstinate infidelity to follow You, their Shepherd and Leader, or, renouncing the promises of their Baptism, have cast off the sweet yoke of Your law.
 
-We are now resolved to expiate each and every deplorable outrage committed against you; we are determined to make amends for the manifold offenses against Christian modesty in indecent dress and behavior, for all the foul seductions laid to ensnare the feet of the innocent, for the frequent violations of Sundays and holydays, and for the shocking blasphemies uttered against You and Your Saints.
+We are now resolved to expiate each and every deplorable outrage committed against You; we are determined to make amends for the manifold offenses against Christian modesty in indecent dress and behavior, for all the foul seductions laid to ensnare the feet of the innocent, for the frequent violations of Sundays and holydays, and for the shocking blasphemies uttered against You and Your Saints.
 We wish also to make amends for the insults to which Your Vicar on earth and Your priests are subjected, for the profanation, by conscious neglect or terrible acts of sacrilege, of the very Sacrament of Your divine love, and lastly for the public crimes of nations who
 resist the rights and teaching authority of the Church which You have founded.
 
 Would that we were able to wash away such abominations with our blood.
-We now offer, in reparation for these violations of Your divine honor, the satisfaction You once made to your Eternal Father on the cross and which You continue to renew daily on our altars;
+We now offer, in reparation for these violations of Your divine honor, the satisfaction You once made to Your Eternal Father on the cross and which You continue to renew daily on our altars;
 we offer it in union with the acts of atonement of Your Virgin Mother and all the saints and of the pious faithful on earth;
 and we sincerely promise to make recompense, as far as we can with the help of Your grace, for all neglect of Your great love and for the sins we and others have committed in the past.
 Henceforth, we will live a life of unswerving faith, of purity of conduct, of perfect observance of the precepts of the Gospel and especially that of charity.
@@ -666,7 +624,7 @@ and by the crowning gift of perseverance keep us faithful unto death in our duty
 \indulgencedprayertitle{Act of Dedication of the Human Race to Christ the King (\foreign{Iesu dulcissime, Redemptor})}
 \linkednote{grant2}{A plenary indulgence is granted for publicly reciting this prayer on the solemnity of Our Lord Jesus Christ, King of the Universe (on the last Sunday of Ordinary Time, i.e. the Sunday preceding the first Sunday of Advent);
 a partial indulgence is granted for its use in other circumstances.}
-Most sweet Jesus, Redeemer of the human race, look down upon us humbly prostrate before you.
+Most sweet Jesus, Redeemer of the human race, look down upon us humbly prostrate before You.
 We are Yours, and Yours we wish to be;
 but to be more surely united with You, behold each one of us freely consecrates himself today to Your Most Sacred Heart.
 Many indeed have never known You;
@@ -705,7 +663,7 @@ Through Christ our Lord. Amen.
 \indulgencedprayertitle{\foreign{Ad te, beate Ioseph}}
 \linkednote{grant19}{A partial indulgence is granted for invoking St. Joseph with this prayer.}
 To you, O blessed Joseph, do we come in our tribulation, and having implored the help of your most holy spouse, we confidently invoke your patronage also.
-Through that charity which bound you to the Immaculate Virgin Mother of God and through the paternal love with which you embraced the Child Jesus, we humbly beg you graciously to regard the inheritance which Jesus Christ has purchased by his Blood, and with your power and strength to aid us in our necessities.
+Through that charity which bound you to the Immaculate Virgin Mother of God and through the paternal love with which you embraced the Child Jesus, we humbly beg you graciously to regard the inheritance which Jesus Christ has purchased by His Blood, and with your power and strength to aid us in our necessities.
 O most watchful Guardian of the Holy Family, defend the chosen children of Jesus Christ;
 O most loving father, ward off from us every contagion of error and corrupting influence;
 O our most mighty protector, be kind to us and from heaven assist us in our struggle with the power of darkness.
@@ -724,7 +682,7 @@ Through Christ our Lord. Amen.
 
 \indulgencedprayertitle{\foreign{Visita, quaesumus, Domine}}
 \linkednote{grant26}{A partial indulgence is granted for devoutly offering a prayer of supplication such as this one at the beginning and end of the day, when starting and completing work, or before and after meals.}
-Visit, we beg you, O Lord, this dwelling, and drive from it all snares of the enemy:
+Visit, we beg You, O Lord, this dwelling, and drive from it all snares of the enemy:
 let Your holy Angels dwell herein, to keep us in peace;
 and let Your blessing be always upon us.
 Through Christ our Lord.
@@ -770,7 +728,7 @@ Show us Your favor, Lord Jesus.
 Amen.
 \newpage
 \prayertitle{Prayer in Defense of Marriage}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-defense-of-marriage.cfm
+\label{prayer:defense_marriage}
 God our Father, we give You thanks for the gift of marriage:
 the bond of life and love, and the font of the family. 
 The love of husband and wife enriches Your Church with children, fills the world with a multitude of spiritual fruitfulness and service,
@@ -824,7 +782,7 @@ deceased servant \insertname\ rest in a place of light, a verdant place, a place
 Do You, O good and compassionate God, forgive every fault committed by him in word, work, or thought;
 because there is no man who lives and does not sin.
 You alone are without sin and Your justice is justice throughout the ages and Your word is truth.
-Since You, O Christ our God, are the resurrection, the life and the repose of your
+Since You, O Christ our God, are the resurrection, the life, and the repose of Your
 deceased servant \insertname, we give You glory together with Your un-begotten Father with
 Your most holy, good, and vivifying Spirit, now and always and for ever and ever.
 
@@ -840,17 +798,17 @@ Give rest to their souls;
 cancel our faults and their faults committed before You willingly or unwillingly, consciously or unconsciously.
 
 Grant them rest.
-Forgive, O God, and pardon the voluntary and involuntary sins committed consciously or unconsciously by word, work or omissions, by secret thoughts, or publicly, deliberately or through error and which Your holy Name knows.
+Forgive, O God, and pardon the voluntary and involuntary sins committed consciously or unconsciously by word, work, or omissions, by secret thoughts or publicly, deliberately or through error and which Your holy Name knows.
 Grant us a Christian ending without sin and unite us at the feet of Your elect when You will, where You will and how You will, without us having to blush for our sins because in this as in all things Your holy and blessed Name, the Name of our Lord Jesus Christ and of the Holy Spirit, be praised and glorified now and for all ages. Amen.
 
 \prayertitle{For the Dead}
-% http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm
+\label{prayer:dead}
 In Your hands, O Lord, we humbly entrust our brothers and sisters.
 In this life You embraced them with Your tender love;
 deliver them now from every evil and bid them eternal rest.
 
 The old order has passed away:
-welcome them into paradise, where there will be no sorrow, no weeping or pain,
+welcome them into paradise, where there will be no sorrow, no weeping, or pain,
 but fullness of peace and joy with Your Son and the Holy Spirit forever and ever.
 Amen.
 
@@ -858,7 +816,7 @@ Amen.
 O God, who has commanded us to honor our father and our mother, in Your mercy have pity on the souls of my father and mother, and forgive them their trespasses, and make me to see them again in the joy of everlasting brightness. Through Christ our Lord. Amen.
 
 \prayertitle{For Mourners}
-% Combined from multiple prayers given at http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm
+\label{prayer:mourners}
 Lord God, You are attentive to the voice of our pleading.
 Let us find in Your Son comfort in our sadness, certainty in our doubt, and courage to live through this hour.
 Make our faith strong through Christ our Lord.
@@ -872,7 +830,7 @@ in the name of the Father, and of the Son, and of the Holy Spirit.
 Amen.
 
 \prayertitle{For the Poor Souls in Purgatory}
-% https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg
+\label{prayer:poor_souls_purgatory}
 My Jesus, by the sorrows You suffered in Your agony in the Garden, in Your scourging and crowning with thorns, in Your journey to Calvary, in Your crucifixion and death, have mercy on the souls in purgatory, and especially on those who are most forsaken;
 deliver them from the torments they endure;
 call them and admit them to Your most sweet embrace in Paradise, where You live with the Father and the Holy Spirit, one God, for ever and ever.
@@ -881,24 +839,100 @@ Merciful Father, hear our prayers and console us, as we renew our faith in Your 
 Amen.
 
 \prayertitle{For the Most Neglected and Most in Need in Purgatory}
-% combined from two prayers from:
-% https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg
+\label{prayer:most_neglected_purgatory}
 Lord, Almighty God, through the Sacred Blood which Your Divine Son shed in the Garden of Gethsemane and at the painful Crowning of Thorns, I ask You to free the souls in Purgatory, in particular those who are most neglected and those in most need of our intercession.
 Please do not let them wait any longer in Purgatory, and lead them into Your Glory so that they may praise and glorify You throughout eternity.
 Amen.
 
 \prayertitle{For those in Purgatory Closest to the Entrance of Heaven}
-% https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg
+\label{prayer:purgatory_closest_heaven}
 Lord, Almighty God, through the Sacred Blood which Your Divine Son shed during the cruel Scourging, I ask You to free the Souls in Purgatory, in particular those who stand the closest to the entrance of Your Delight.
 Let them begin to praise and glorify You from now throughout eternity.
 Amen.
 
 \prayertitle{Prayer at Graveside}
-% http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm
+\label{prayer:graveside}
 Lord Jesus Christ, by Your own three days in the tomb, You hallowed the graves of all who believe in You and so made the grave a sign of hope that promises resurrection even as it claims our mortal bodies.
 
 Grant that our brother/sister, \insertname, may sleep here in peace until You awaken him/her to glory, for You are the resurrection and the life.
 Then he/she will see You face to face and in Your light will see light and know the splendor of God, for You live and reign forever and ever.
+Amen.
+
+\newpage
+
+\prayersection{For the Church}
+\prayertitle{For the Church Under Persecution}
+% My Prayer Book, p. 259
+Father, in the mystery of Your providence the Church was to share in the sufferings of Christ Your Son.
+Give those who suffer persecution for their faith a share also in the patience and love of Your Son, that they may be true and faithful witnesses to His promise of resurrection and eternal life.
+Amen.
+
+\prayertitle{For the Church}
+% My Prayer Book, p. 258
+Father, in the new covenant instituted by Christ Your Son, You gather Your people in the unity of Your Spirit from all the nations of the earth.
+Keep Your Church faithful to her mission as a leaven in the world, renewing all peoples in Christ and transforming them into Your own family.
+Amen.
+
+\prayertitle{For our Parish}
+O God, You have made us the Church of Your dear Son.
+Make our parish a family of one heart and mind in love toward You.
+Grant that our common life and world may be an example to all about us.
+Guide our pastor and his assistants in their work.
+Acknowledge the intercessions of our patron; and keep us secure in Your love.
+Amen.
+
+\prayertitle{For the Pope}
+% My Prayer Book, p. 258
+Father, as successor to the Apostle Peter You have chosen Your servant \insertname\ to be the vicar of Christ on earth and shepherd of the whole flock.
+May he strengthen his brothers, and may the whole Church be in communion with him in the bond of unity, love, and peace, that all men may receive from You, the shepherd and bishop of their souls, truth and eternal life.
+Amen.
+\newpage
+\prayertitle{For the Bishop}
+% My Prayer Book, p. 260
+God our Father, You have entrusted to Your servant \insertname, as a successor to the Apostles, the care of the diocese of \insertname.
+Give him Your Spirit of wisdom and courage, of understanding and love.
+Keep him faithful to his mission that he may build up Your Church, the universal sacrament of salvation.
+Amen.
+
+\prayertitle{For Priests}
+% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-priests.cfm
+Gracious and loving God, we thank You for the gift of our priests.
+Through them, we experience Your presence in the sacraments.
+
+Help our priests to be strong in their vocation.
+Set their souls on fire with love for Your people.
+
+Grant them the wisdom, understanding, and strength they need to follow in the footsteps of Jesus.
+Inspire them with the vision of Your Kingdom.
+
+Give them the words they need to spread the Gospel.
+Allow them to experience joy in their ministry.
+
+Help them to become instruments of Your divine grace.
+
+We ask this through Jesus Christ, who lives and reigns as our Eternal Priest.
+Amen.
+
+\prayertitle{For Priests \#2}
+% My Prayer Book, p. 260
+Father, You appointed Your only Son as the eternal high priest.
+Grant that those He has chosen to be ministers of word and sacrament may be faithful in their ministry until the day of His coming.
+Amen.
+
+\prayertitle{For Religious}
+% My Prayer Book, p. 261
+Father, every good intention has its origin and fulfillment in You.
+Guide Your people along the path of salvation and look kindly on those who have left all things to follow Christ in chastity, poverty, and obedience, and to consecrate themselves to You.
+In their service to You, Father, and to all their brothers and sisters, may they give faithful witness to Christ.
+Amen.
+
+\prayertitle{For Vocations}
+% http://www.usccb.org/beliefs-and-teachings/vocations/upload/Prayer-for-Vocations-Card-2014.pdf
+God our Father, we thank You for calling men and women to serve in Your Son’s Kingdom as priests, deacons, and consecrated persons.
+Send Your Holy Spirit to help others to respond generously and courageously to Your call.
+May our community of faith support vocations of sacrificial love in our youth and young adults.
+Through our Lord Jesus Christ, who lives and reigns with You in the unity of the Holy
+Spirit, one God, forever and ever.
 Amen.
 
 \newpage
@@ -1190,7 +1224,7 @@ Father, in Jesus our Lord, we praise and thank You for Your most precious gift o
 Keep us, the dwelling place of Your most Holy Spirit, ever healthy in body and soul.
 
 Jesus, Divine Healer, pour Your grace upon all those afflicted with illness or disease.
-Protect from all harm those who are vulnerable due to sickness, suffering, frailty, poverty or age, whether elderly or unborn.
+Protect from all harm those who are vulnerable due to sickness, suffering, frailty, poverty, or age, whether elderly or unborn.
 
 Holy Spirit, touch the hearts of all who serve human life in medicine and science, so they will protect the dignity of each person, from conception to natural death, and remain faithful advocates of all entrusted to their care.  
 
@@ -1214,7 +1248,7 @@ Hear our prayers for those impacted by the death penalty.
 
 We pray for all people, that their lives and dignity as children of a loving God may be respected and protected in all stages and circumstances.
 
-We pray for victims of violence and their families, that they may experience our love and support and find comfort in your compassion and in the promise of eternal life.
+We pray for victims of violence and their families, that they may experience our love and support and find comfort in Your compassion and in the promise of eternal life.
 
 We pray for those on death row, that their lives may be spared, that the innocent may be freed and that the guilty may come to acknowledge their faults and seek reconciliation with You.
 
@@ -1225,7 +1259,7 @@ We pray for civic leaders, that they may commit themselves to respecting every h
 Compassionate Father, give us wisdom and hearts filled with Your love.
 Guide us as we work to end the use of the death penalty and to build a society that truly chooses life in all situations.
 
-We ask this, Father, through your Son Jesus Christ, who lives and reigns with the Holy Spirit, one God forever and ever.
+We ask this, Father, through Your Son Jesus Christ, who lives and reigns with the Holy Spirit, one God forever and ever.
 Amen.
 
 \prayertitle{For Life}
@@ -1248,7 +1282,7 @@ Lord, love is kind.
 Give to the new father whose friends tell him to abort his child the gentleness, compassion and courage to support his wife and child, protect them from all that could harm them, and sustain them against selfishness and hate.
 
 Lord, love is not jealous.
-Remove from all human hearts the temptation to trade human life for advantage, convenience or personal benefit.
+Remove from all human hearts the temptation to trade human life for advantage, convenience, or personal benefit.
 Deliver us from the expediency that values personal gain and pleasure over the dignity of human life.
 
 Lord, love is not pompous.
@@ -1256,44 +1290,45 @@ Deliver us from the arrogance that sees our needs or wants as superior to the ri
 Help us to see all our brothers and sisters as worthy of all of our love.
 
 Lord, love is not inflated.
-Grant us a share in the humility of your Son, who sought not to be served, but to serve. Help us to see in every human life, rich or poor, young or old, guilty or innocent, a reflection of your image and likeness. 
+Grant us a share in the humility of Your Son, who sought not to be served, but to serve. Help us to see in every human life, rich or poor, young or old, guilty or innocent, a reflection of Your image and likeness. 
 
 Lord, love is not rude.
-Implant a spirit of gentle compassion in the hearts of each of your sons and daughters, Lord, that no person may ever be treated as less than the child of God which you have made them, through the Paschal Death and Resurrection of your only-begotten Son.
+Implant a spirit of gentle compassion in the hearts of each of Your sons and daughters, Lord, that no person may ever be treated as less than the child of God which You have made them, through the Paschal Death and Resurrection of Your only-begotten Son.
 
 Lord, love does not seek its own interests.
 Give to all who govern us, Lord, a generous spirit, that our country may not so much seek to be great as to be good, to be rich in possessions as to be rich in mercy, or to be renowned as to be renowned for justice and truth for all.
 
 Lord, love is not quick-tempered.
-Grant that by our prudence and patience we might learn to live that sacrificial love by which your Son died for us on the Cross, that all men and women might know our kindness and willingness to love them unto death after the model of our Lord and Savior.
+Grant that by our prudence and patience we might learn to live that sacrificial love by which Your Son died for us on the Cross, that all men and women might know our kindness and willingness to love them unto death after the model of our Lord and Savior.
 
 Lord, love does not brood over injury.
-Give us the grace of mercy, Lord, that like your Son we might forgive those who sin against us, seeking only their redemption and eternal happiness.
-Forgive the abortionist who takes the life of an unborn child. Move his heart, grant him the grace of repentance, and give us a full share in your mercy.
+Give us the grace of mercy, Lord, that like Your Son we might forgive those who sin against us, seeking only their redemption and eternal happiness.
+Forgive the abortionist who takes the life of an unborn child.
+Move his heart, grant him the grace of repentance, and give us a full share in Your mercy.
 
 Lord, love does not rejoice over wrongdoing.
 Help us to seek only the redemption of wrongdoers, Lord, and remove from our hearts all desire for vengeance and hate.
-Help us to desire not revenge, even for the horrors of abortion, but the repentance and happiness of all your children.
+Help us to desire not revenge, even for the horrors of abortion, but the repentance and happiness of all Your children.
 
 Lord, love rejoices with the truth.
-Implant deep within our hearts a sense of the joy of the Gospel of Life, and make us joy-filled evangelists of your great gift of life.
+Implant deep within our hearts a sense of the joy of the Gospel of Life, and make us joy-filled evangelists of Your great gift of life.
 
 Lord, love bears all things.
 When we are insulted or reviled for the sake of the Gospel of Life, give us the courage and the innocence of the children of God.
-Help us, Lord, to suffer for the sake of your truth, and never to seek our own good, even in the good work we do.
+Help us, Lord, to suffer for the sake of Your truth, and never to seek our own good, even in the good work we do.
 
 Lord, love believes all things
-Deliver us from every temptation to despair, Lord. When we are discouraged, give us the grace to trust in your mercy and to know that your love is ever victorious, even in the face of darkness, death, and hate.
+Deliver us from every temptation to despair, Lord. When we are discouraged, give us the grace to trust in Your mercy and to know that Your love is ever victorious, even in the face of darkness, death, and hate.
 
 Lord, love hopes all things.
-As we trust in your infinite love, O Lord, give us the trust that comes from the Gospel, and help us to cling to that sure and certain hope that for those who love God all things come to good.
+As we trust in Your infinite love, O Lord, give us the trust that comes from the Gospel, and help us to cling to that sure and certain hope that for those who love God all things come to good.
 
 Lord, love endures all things.
-In the face of death, destruction, and a culture of death, never let us lose sight of the beauty of the face of your only-begotten Son, Our Lord, who suffered the torments of his Passion and Death for the sake of our sins.
-Let us trust that through his Passion we will have the strength to do your will and to carry each cross that comes our way for the glory of God and the love of his little ones.
+In the face of death, destruction, and a culture of death, never let us lose sight of the beauty of the face of Your only-begotten Son, Our Lord, who suffered the torments of His Passion and Death for the sake of our sins.
+Let us trust that through His Passion we will have the strength to do Your will and to carry each cross that comes our way for the glory of God and the love of His little ones.
 
 Lord, love never fails.
-When the crusade for life seems unending and our latest initiatives have failed, when our hearts are filled with sadness or anger or fear, come to our aid, O Lord, and give us the assurance that you are ever with us, that your mercies will not end, and that you, our Creator and our God, will bring victory to all who seek to love as you have commanded them.
+When the crusade for life seems unending and our latest initiatives have failed, when our hearts are filled with sadness or anger or fear, come to our aid, O Lord, and give us the assurance that You are ever with us, that Your mercies will not end, and that You, our Creator and our God, will bring victory to all who seek to love as You have commanded them.
 
 \prayertitle{Lenten Prayer for Life}
 % Bishop James D. Conley, Auxiliary Bishop of Denver http://www.priestsforlife.org/prayers/bishop-conley-lenten-prayer.htm
@@ -1328,6 +1363,31 @@ Come down upon me at this important moment.
 Help me to see my life in the light of Jesus Christ.
 Renew my love as I am reconciled to God and His people.
 
+\prayertitle{Prayer to the Holy Spirit before Confession}
+% https://www.ourcatholicprayers.com/prayers-before-confession.html
+O Holy Spirit, Source of all light, Spirit of wisdom, of understanding, and of knowledge, come to my assistance and enable me to make a good confession.
+Enlighten me, and help me now to know my sins as one day I shall be forced to recognize them before Your judgment seat.
+Bring to my mind the evil which I have done and the good which I have neglected.
+Permit me not to be blinded by self-love.
+Grant me, moreover, heartfelt sorrow for my transgressions, and the grace of a sincere confession, so that I may be forgiven and admitted into Your friendship.
+
+\prayertitle{Prayer Before Confession for Heavenly Aid}
+% https://www.ourcatholicprayers.com/prayer-for-heavenly-aid.html
+Father in heaven, most merciful God, relying on Your goodness and mercy, I come to You with childlike confidence to confess my sins and to beg Your forgiveness.
+You will not reject a contrite and humble heart.
+Bless me and receive me again into Your favor.
+I realize that I have been most ungrateful to You, but I desire henceforth to keep your commandments and to do Your Will in all things.
+
+Jesus my Savior, my Good Shepherd, I did not follow in your footsteps but have strayed far from the path that You have marked out for me.
+Repentant and sorrowful, I beg to be admitted again into the fold of Your faithful followers.
+I want to confess my sins with the same sincerity as I should wish to confess at the moment of my death.
+My Jesus, I beg You for the grace to examine my conscience well.
+
+Holy Spirit, come into my soul.
+Enlighten my mind and strengthen my will that I may know my sins, humbly confess them, and sincerely amend my life.
+
+Mary, my Mother, Immaculate Spouse of the Holy Spirit, refuge of sinners, help me by your kind prayers. Amen.
+
 % Is this indulgenced? See Confiteor below.
 \prayertitle{Act of Contrition}
 % My Prayer Book, p. 30
@@ -1342,6 +1402,56 @@ In His name, my God, have mercy.
 \linkednote{grant9}{A partial indulgence is granted for devoutly reciting this prayer, especially in preparation for sacramental confession.}
 I confess to almighty God and to you, my brothers and sisters, that I have greatly sinned, in my thoughts and in my words, in what I have done and in what I have failed to do, through my fault, through my fault, through my most grievous fault;
 therefore I ask blessed Mary, ever Virgin, all the angels and saints, and you, my brothers and sisters, to pray for me to the Lord our God.
+
+\prayertitle{Prayer After Confession to Strengthen Resolutions}
+% https://www.ourcatholicprayers.com/prayer-for-resolutions-after-confession.html
+Almighty and most merciful God, because of Your great mercy You have been pleased to admit me once more to this Sacrament of forgiveness.
+You have received me, though I have often gone astray from You.
+I was an outcast, but You welcomed me back as a friend.
+I thank You with all my heart for Your infinite mercy and kindness towards me, an ungrateful sinner.
+In union with the Blessed Virgin Mary, the Refuge of sinners, I thank You for all the graces and blessings You have bestowed upon me in this Sacrament of Penance.
+
+My dear God, I now renew the promises I have made in Baptism, and I give myself eternally to Your love and service.
+Give me the grace in the future to hate sin more than death itself and to avoid all such occasions and company as have in the past unhappily brought me to it.
+Help me, O Lord, for I am weak.
+Strengthen my resolutions and give me sufficient grace to overcome the evil promptings of my nature.
+Never permit me to wound You again by my sins.
+Refresh my soul that I may become strong in my determination to perform the duties of my state of life properly and fearlessly.
+Through Your divine grace, without which I can do nothing, help me to live a good life, die a happy death, save my immortal soul, and be happy with You for all eternity in heaven. Amen.
+
+\prayertitle{Thanksgiving After Confession}
+I return unto You, O Lord Jesus, and give You thanks that You have been pleased to cleanse me from the foul leprosy of my sins.
+Blessed be Your Name, O Lord, forever and ever.
+Truly you are a Savior Who rejects none that come unto You seriously desiring to repent, but receives them into Your favor, and numbers them with Your children.
+I acknowledge and adore Your mercy, and dedicate myself wholly to Your service hereafter.
+Assist my weakness and suffer me not again to fall into my past sins and to be separated from You;
+but so bind my heart and soul to You with the cords of Your love, that I may say with the Apostle ``Who shall separate me from the love of Christ?''
+
+\prayertitle{Prayer After Confession by St. Frances Xavier Cabrini}
+My dearest Jesus, I have told all my sins as well as I could.
+I tried hard to make a good confession.
+I feel sure that you have forgiven me.
+I thank You.
+It is only because of all Your sufferings that I can go to confession and free myself from my sins.
+Your Heart is full of love and mercy for poor sinners.
+I love You because You are so good to me.
+My loving Savior, I shall try to keep from sin and to love You more each day.
+My dear Mother Mary, pray for me and help me to keep my promises.
+Protect me and do not let me fall back into sin.
+Almighty God, kneeling before Your Divine Majesty, I adore You and because You command me, I dare approach Your divine Heart.
+But what shall I say if You do not enlighten me with a ray of Your divine light?
+
+Speak to my soul, O Lord, and command me to listen to Your voice.
+Enlighten my will to put Your words into practice.
+Pour Your grace into my heart;
+lift up my soul weighed down by my sins;
+raise my mind to heavenly things, so that earthly desires may no longer appeal to me.
+Speak to my soul with Your divine omnipotence, for You are my salvation, my life, and my peace, in time and in eternity.
+Strengthen me with the grace of Your Holy Spirit and give Your peace to my soul that I may be free from all needless worry and care.
+Help me to desire always that which is pleasing and acceptable to You so that Your Will may be my will.
+Grant that I may rid myself of all unholy desires, and that for Your love I may remain unknown in this world, and be known only to You.
+
+Do not permit me to attribute to myself the good that You perform in me and through me, but rather, referring all honor to Your majesty, may I glory only in my weakness, so that renouncing sincerely all vain glory which comes from the world, I may aspire to the true and lasting glory which comes from you. Amen.
 
 \newpage
 
@@ -1712,7 +1822,7 @@ For with the Lord is mercy, with Him is plenteous redemption, and He will redeem
 \indulgencedprayertitle{Psalm 143}
 Lord, hear my prayer;
 in Your faithfulness listen to my pleading;
-answer me in your righteousness.
+answer me in Your righteousness.
 Do not enter into judgment with Your servant;
 before You no one can be just.
 The enemy has pursued my soul;
@@ -1895,7 +2005,7 @@ Amen.
 
 \prayertitle{Prayer of a Couple on the Anniversary of Marriage}
 % http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/anniversary-of-marriage.cfm Text adapted from the English translation of The Order of Celebrating Matrimony © 2013, International Commission on English in the Liturgy Corporation. All rights reserved. This form is not approved for liturgical use.
-We praise you, O God, we bless You, Creator of all things, who in the beginning made man and woman that they might form a communion of life and love.
+We praise You, O God, we bless You, Creator of all things, who in the beginning made man and woman that they might form a communion of life and love.
 
 We also give You thanks for graciously blessing our family life so that it might present an image of Christ's union with the Church.
 
@@ -1946,7 +2056,7 @@ Good Jesus, Who has borne so patiently with me;
 make me wholly patient for love of You.
 
 Good Jesus, lead me that I may follow You; hold me that I may cling fast to You;
-teach me, that I may choose you alone; keep me that I may be Yours for ever.
+teach me, that I may choose You alone; keep me that I may be Yours for ever.
 
 \prayertitle{Prayer of Those in Their Last Agony}
 % https://www.ourcatholicprayers.com/aspirations-for-the-dying.html. Also from the Laudate app under ``Aspirations for the Dying''
@@ -2128,4 +2238,45 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 \subsubgrant{1} devoutly visit a cemetery and at least mentally pray for the dead;
 
 \subsubgrant{2} devoutly recite lauds or vespers from the Office of the Dead or the prayer ``Eternal rest''.
+
+\newpage
+\section{Prayer Sources}
+% TODO It would be nice to be able to include the label as an argument to this command, but there are problems with underscores.
+\newcommand{\urlsource}[1]{:\\{\small\url{#1}}}
+
+\nameref{prayer:lay_apostle}\urlsource{https://www.ourcatholicprayers.com/prayer-of-a-lay-apostle.html}
+
+\nameref{prayer:grace}\urlsource{https://www.ourcatholicprayers.com/prayers-for-grace-and-guidance.html}
+
+\nameref{prayer:resolution}\urlsource{https://www.ourcatholicprayers.com/prayer-of-resolution.html}
+
+%\nameref{prayer:act_of_faith}: test
+
+\nameref{prayer:new_evangelization} modified slightly from\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-new-evangelization.cfm}
+
+\nameref{prayer:indifference}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-overcome-indifference.cfm}
+
+\nameref{prayer:poor}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-poor.cfm} (which cites \textit{Being Neighbor, the Catechism and Social Justice}, Catholic Campaign for Human Development, ©1998 United States Conference of Catholic Bishops)
+
+\nameref{prayer:marginalized} modified from\urlsource{http://www.usccb.org/about/pro-life-activities/prayers/intercessory-prayers-the-marginalized.cfm}
+
+\nameref{prayer:trafficking}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-end-trafficking.cfm}
+
+\nameref{prayer:healing_victims_abuse}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-healing-victims-of-abuse.cfm}
+
+\nameref{prayer:charity_truth}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-charity-in-truth.cfm}
+
+\nameref{prayer:defense_marriage}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-defense-of-marriage.cfm}
+
+\nameref{prayer:dead}\urlsource{http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm}
+
+\nameref{prayer:mourners} combined from multiple prayers given at\urlsource{http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm}
+
+\nameref{prayer:poor_souls_purgatory}\urlsource{https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg}
+
+\nameref{prayer:most_neglected_purgatory} combined from two prayers from\urlsource{https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg}
+
+\nameref{prayer:purgatory_closest_heaven}\urlsource{https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg}
+
+\nameref{prayer:graveside}\urlsource{http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm}
 \end{document}
