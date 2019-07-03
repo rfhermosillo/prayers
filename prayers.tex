@@ -1,7 +1,26 @@
 \documentclass[12pt]{article}
 
 %\usepackage{ucs}% can use Unicode characters with this and \unichar{code}?
-\usepackage[utf8]{inputenc}
+\usepackage{ifxetex, ifluatex}
+
+% From https://tex.stackexchange.com/a/47579/61108
+\newif\ifxetexorluatex
+\ifxetex
+	\xetexorluatextrue
+\else
+	\ifluatex
+		\xetexorluatextrue
+	\else
+		\xetexorluatexfalse
+	\fi
+\fi
+
+\ifxetexorluatex
+	\usepackage{fontspec}
+\else
+	\usepackage[utf8]{inputenc}
+\fi
+
 \usepackage{etoolbox}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -20,31 +39,67 @@
 \renewcommand\@seccntformat[1]{}
 \makeatother
 
-%\robustify\kreuz
+\ifxetexorluatex
+	\setmonofont{Consolas}
+\fi
 
 \newcommand{\prayersection}[1]{\section{#1}}
 \newcommand{\prayertitle}[1]{\subsection{#1}}
-%\newcommand{\indulgencedprayertitle}[1]{\prayertitle{\textcolor{red}{#1}}}
-%\newcommand{\indulgencedprayertitle}[1]{\prayertitle{#1 +$\textdied\maltese\bigstar\blacklozenge\Diamond\kreuz$}}
 \newcommand{\indulgencedprayertitle}[1]{\prayertitle{#1 \protect\kreuz}}
-%\newcommand{\indulgencedprayertitle}[1]{\prayertitle{#1 +}}
 
 \newcommand{\insertname}{(N\dots)}
 
-% TODO Use normal text if already set to \textsl. I tried to adapt the accepted answer at https://tex.stackexchange.com/q/31649/61108 but it didn't work. Also, \emph can handle nested emphasis but redefining it as in https://tex.stackexchange.com/a/6757/61108 doesn't work, either.
-\newcommand{\foreign}[1]{\textsl{#1}}
+% \emph can detect nested emphasis but I prefer the slanted Computer/Latin Modern font to the italics font.
+% The fontspec package, which requires XeLaTeX or LuaLaTeX, provides \emfontdeclare which sets the fonts for nested emphasis.
+% If the fontspec package is not available then simply use \textsl for emphasis.
+\ifxetexorluatex
+	\emfontdeclare{\slshape,\upshape}
+	\newcommand{\emphasis}[1]{\emph{#1}}
+\else
+	\newcommand{\emphasis}[1]{\textsl{#1}}
+\fi
 
-\newcommand{\note}[1]{{\small{\textsl{#1}}}\newline}
+\newcommand{\foreign}[1]{\emphasis{#1}}
+
+\newcommand{\note}[1]{{\small{\emphasis{#1}}}\newline}
 \newcommand{\linkednote}[2]{\hyperlink{#1}{\note{#2}}}
 
-% TODO Replace with versicle character (Unicode U+2123) and response character (U+211F)
-% See https://en.wikipedia.org/wiki/Preces
-\newcommand{\versicle}{\textbf{V.}}
-\newcommand{\response}{\textbf{R/.}}
+% Unicode versicle character taken from https://unicode-table.com/en/2123/
+% Unicode response character taken from https://unicode-table.com/en/211F/
+% The fontspec package, for XeLaTeX or LuaLaTeX, is required to use Unicode characters.
+\newcommand{\versicle}{%
+	\ifxetexorluatex%
+		{\setmainfont{Times New Roman}\textbf{℣.}}%
+	\else%
+		\textbf{V.}%
+	\fi%
+}
+
+\newcommand{\response}{%
+	\ifxetexorluatex%
+		{\setmainfont{Times New Roman}\textbf{℟.}}%
+	\else%
+		\textbf{R/.}%
+	\fi%
+}
+
+\newcommand{\sectionsign}{%
+	\ifxetexorluatex%
+		{\setmainfont{Times New Roman}§}%
+	\else%
+		§
+	\fi
+}
+
+\newcommand{\degreesign}{%
+	\ifxetexorluatex%
+		{\setmainfont{Arial}°}%
+	\else%
+		$^\circ$
+	\fi
+}
 
 % TODO Add citations. Use biblatex? See https://tex.stackexchange.com/questions/13509/biblatex-in-a-nutshell-for-beginners
-
-% TODO How to keep a prayer all on one page? I can use \begin{minipage}{\textwidth}...\end{minipage}} but the spacing between paragraphs is removed.
 
 \begin{document}
 \title{\textbf{Prayers}\date{\vspace{-10ex}}}\maketitle
@@ -261,6 +316,15 @@ Lord, pour out on us Your Spirit of love, understanding, and sacrifice; may we t
 Help us to answer their cry, for it is our own.
 Amen.
 
+\prayertitle{For Those with Profound Disabilities}
+\label{prayer:profound_disabilities}
+Lord Jesus Christ, 
+You know the pain of brokenness, You took our weaknesses upon Your shoulders and bore it to the wood of the cross.
+Hear our prayers for our brothers and sisters whose bodies fail them and whose minds are crippled by the ravages of disease.
+Implant a love for them deep within our hearts, that we, disfigured and disabled by our sin, may treasure and nurture the gifts of their lives.
+May we find You in their weakness, and console You in our care for them.
+For You are Lord, forever and ever. Amen
+\newpage
 \prayertitle{For the Aged}
 % My Prayer Book, p. 264
 Eternal Father, unchanged down the changing years, be near to those who are aged.
@@ -590,12 +654,26 @@ Your grace and Your love are wealth enough for me.
 Give me these, Lord Jesus, and I ask for nothing more.
 
 \prayertitle{The Lord's Prayer}
-% My Prayer Book, p. 24
 Our Father, who art in heaven, hallowed be Your name.
 Thy will be done on earth as it is in heaven.
 Give us this day our daily bread;
 and forgive us our trespasses as we forgive those who trespass against us;
 and do not let us fall into temptation, but deliver us from evil.
+
+\prayertitle{Glory Be}
+Glory be to the Father, and to the Son, and to the Holy Spirit.
+As it was in the beginning, is now, and ever shall be, in a world without end.
+Amen.
+
+\prayertitle{Short Prayer}
+\label{prayer:short}
+Lord, help me to remember that nothing is going to happen to me today that You and I together can't handle. Amen.
+
+\prayertitle{The Holy Face}
+\label{prayer:holy_face}
+O Blessed Face of my kind Savior, by the tender love and piercing sorrow of Our Lady as she beheld You in Your cruel Passion, grant us to share in this intense sorrow and love
+so as to fulfill the holy will of God to the utmost of our ability.
+Amen.
 
 \indulgencedprayertitle{\foreign{Angele Dei}}
 \linkednote{grant18}{A partial indulgence is granted for devoutly invoking the care of one's guardian angel with this prayer.}
@@ -654,6 +732,37 @@ Blessed are you among women, and blessed is the fruit of your womb, Jesus.
 Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death.
 Amen.
 
+\prayertitle{To Our Lady, Help Of Christians}
+\label{prayer:Our_Lady_help_of_Christians}
+\note{By St. John Bosco}
+Most Holy Virgin Mary, Help of Christians, how sweet it is to come to your feet
+imploring your perpetual help.
+If earthly mothers cease not to remember their children, how can you, the most loving of all mothers, forget me?
+Grant then to me, I implore you, your perpetual help in all my necessities, in every sorrow, and especially in all my temptations.
+I ask for your unceasing help for all who are now suffering.
+Help the weak, cure the sick, convert sinners.
+Grant through your intercessions many vocations to the religious life.
+Obtain for us, O Mary, Help of Christians, that having invoked you on earth we may love and eternally thank you in heaven.
+
+\prayertitle{Pope St. John Paul II's Prayer to Our Lady of Lourdes}
+\label{prayer:JPII_Lady_of_Lourdes}
+Hail Mary, poor and humble woman, blessed by the Most High!
+Virgin of hope, dawn of a new era, we join in your song of praise, to celebrate the Lord's mercy, to proclaim the coming of the Kingdom and the full liberation of humanity.
+
+Hail Mary, lowly handmaid of the Lord, Glorious Mother of Christ!
+Faithful Virgin, holy dwelling-place of the Word, teach us to persevere in listening to the Word, and to be docile to the voice of the Spirit, attentive to His promptings in the depths of our conscience and to His manifestations in the events of history.
+
+Hail Mary, Woman of sorrows, Mother of the living!
+Virgin spouse beneath the Cross, the new Eve, be our guide along the paths of the world.
+Teach us to experience and to spread the love of Christ, to stand with you before the innumerable crosses on which your Son is still crucified.
+
+Hail Mary, woman of faith, first of the disciples!
+Virgin Mother of the Church, help us always to account for the hope that is in us, with trust in human goodness and the Father's love.
+Teach us to build up the world beginning from within:
+in the depths of silence and prayer, in the joy of fraternal love, in the unique fruitfulness of the Cross.
+
+Holy Mary, Mother of believers, Our Lady of Lourdes, pray for us.
+
 \indulgencedprayertitle{\foreign{Sancti Apostoli Petre et Paule}}
 \linkednote{grant20}{A partial indulgence is granted for devoutly reciting this prayer.}
 Holy Apostles Peter and Paul, intercede for us.
@@ -670,6 +779,22 @@ O our most mighty protector, be kind to us and from heaven assist us in our stru
 As once you rescued the Child Jesus from deadly peril, so now protect God’s Holy Church from the snares of the enemy and from all adversity;
 shield, too, each one of us by your constant protection, so that, supported by your example and your aid, we may be able to live piously, to die in holiness, and to obtain eternal happiness in heaven.
 Amen.
+
+\prayertitle{Prayer to St. Michael the Archangel}
+\label{prayer:StMichael}
+Saint Michael the Archangel, defend us in battle, be our protection against the wickedness and snares of the devil;
+may God rebuke him, we humbly pray;
+and do you, O Prince of the heavenly host, by the power of God, cast into hell Satan and all the evil spirits who prowl through the world seeking the ruin of souls.
+Amen.
+
+\prayertitle{For Help Against Spiritual Enemies}
+\label{prayer:help_against_spiritual_enemies}
+Glorious Saint Michael, Prince of the heavenly hosts, who stands always ready to give assistance to the people of God;
+who fought with the dragon, the old serpent, and cast him out of heaven, and now valiantly defends the Church of God that the gates of hell may never prevail against her, I earnestly entreat you to assist me also, in the painful and dangerous conflict which I sustain against the same formidable foe.
+
+Be with me, O mighty Prince!
+that I may courageously fight and vanquish that proud spirit, whom you, by the Divine Power, gloriously overthrew, and whom our powerful King, Jesus Christ, has, in our nature, completely overcome;
+so having triumphed over the enemy of my salvation, I may with you and the holy angels, praise the clemency of God who, having refused mercy to the rebellious angels after their fall, has granted repentance and forgiveness to fallen man. Amen.
 
 \newpage
 
@@ -1041,12 +1166,34 @@ O Divine Master, grant that I may not so much seek to be consoled as to console,
 
 For it is in giving that we receive, it is in pardoning that we are pardoned, and it is in dying that we are born to eternal life.
 
-\prayertitle{St. Ephrem the Syrian}
+\prayertitle{St. Ephrem the Syrian \#1}
 % My Prayer Book, p. 279
 Have mercy on me:
 I am a sinner, I am weak.
 Be gracious, O God, to my weakness;
 grant strength to me to pray a prayer that will be pleasing to Your will.
+
+\prayertitle{St. Ephrem the Syrian \#2}
+\label{prayer:StEphrem2}
+Lord Jesus Christ, King of Kings, You have power over life and death.
+You know what is secret and hidden, and neither our thoughts nor our feelings are concealed from You.
+Cure me of duplicity;
+I have done evil before You.
+Now my life declines from day to day and my sins increase.
+O Lord, God of souls and bodies, You know the extreme frailty of
+my soul and my flesh.
+Grant me strength in my weakness, O Lord, and sustain me in my misery.
+Give me a grateful soul that I may never cease to recall Your benefits, O Lord most bountiful.
+Be not mindful of my many sins, but forgive me all my misdeeds.
+O Lord, disdain not my prayer - the prayer of a wretched sinner;
+sustain me with Your grace until the end, that it may protect me as in the past.
+It is Your grace which has taught me wisdom;
+blessed are they who follow her ways, for they shall receive the crown of glory.
+In spite of my unworthiness, I praise You and I glorify You, O Lord, for Your mercy to me is without limit.
+You have been my help and my protection.
+May the name of Your majesty be praised forever. 
+To You, our God, be glory.
+Amen.
 
 \prayertitle{St. Augustine}
 % My Prayer Book, p. 276
@@ -1106,7 +1253,7 @@ Because I love You, I will give You the homage of submitting my whole being to Y
 O God, You are my God, in You will I hope!
 You will be my help and my refuge.
 I shall not fear, for not only are You with me but You are in me and I in You.
-\newpage
+
 \prayertitle{Bl. Jan Van Ruysbroeck}
 % My Prayer Book, p. 276
 Lord, I am willing to be poor in all those things of which I have been deprived as I am ready to be rich, O Lord, if it be Your will and to Your glory;
@@ -1271,9 +1418,59 @@ a readiness to nurture and sustain Your precious gift of life.
 Grant this through our Lord Jesus Christ, Your Son, who lives and reigns with You in 
 the unity of the Holy Spirit, God forever and ever.
 Amen.
+
+\prayertitle{Pope Benedict XVI's Prayer For The Unborn}
+\label{prayer:benedict_xvi_unborn}
+Lord Jesus, 
+You who faithfully visit and fulfill with your Presence the Church and the history of men;
+You who in the miraculous Sacrament of Your Body and Blood render us participants in divine Life and allow us a foretaste of the joy of eternal Life;
+we adore and bless You.
+
+Prostrated before You, source and lover of Life, truly present and alive among us, we beg You.
+
+Reawaken in us respect for every unborn life, make us capable of seeing in the fruit of the maternal womb the miraculous work of the Creator, open our hearts to generously welcoming every child that comes into life.
+
+Bless all families, sanctify the union of spouses, render fruitful their love.
+
+Accompany the choices of legislative assemblies with the light of Your Spirit, so that peoples and nations may recognize and respect the sacred nature of life, of every human life.
+
+Guide the work of scientists and doctors, so that all progress contributes to the integral well-being of the person, and no one endures suppression or injustice.
+
+Give creative charity to administrators and economists, so they may realize and promote sufficient conditions so that young families can serenely embrace the birth of new children.
+
+Console the married couples who suffer because they are unable to have children and in Your goodness provide for them.
+
+Teach us all to care for orphaned or abandoned children, so they may experience the warmth of Your Charity, the consolation of Your divine Heart.
+
+Together with Mary, Your Mother, the great believer, in whose womb You took on our human nature, we wait to receive from You, our Only True Good and Savior, the strength to love and serve life, in anticipation of living forever in You, in communion with the Blessed Trinity.
+
+\prayertitle{Lenten Prayer for Life}
+% Bishop James D. Conley, Auxiliary Bishop of Denver http://www.priestsforlife.org/prayers/bishop-conley-lenten-prayer.htm
+Almighty Father and Lord of Life,
+You have entrusted to men the noble mission of safeguarding and protecting human life with the utmost care from the moment of conception to natural death (\textit{Gaudium et Spes}, No. 51).
+
+During this holy season of Lent, a time of both penance and great hope, stir in our hearts a greater love for You and for each other.
+During these 40 days of spiritual renewal, lead us to a deeper conversion so that by living in Your light and love we may bear witness to the gift of life.
+
+Lord Jesus, the firstborn of all creation, have mercy on us. 
+Accept our prayers and our fasting in atonement for the tragic sin of abortion. 
+By the merits of Your precious blood, shed for our redemption, instill in all hearts a profound respect for the gift of life and bring about an end to abortion, euthanasia, and every other assault on innocent human life.
+
+Reawaken in the heart of every pregnant mother a profound love for the life growing in her womb and grant to her unfailing courage to choose life for her child.
+
+Come Holy Spirit, strengthen us and give us fortitude to work tirelessly to promote a true Culture of Life, a culture that recognizes the dignity and sanctity of every person.
+Raise up men and women to serve in public office who will enact laws which will safeguard and protect all human life.
+
+Blessed Mary, Mother of God, you bore the Author of Life in your womb. 
+Through your intercession may our hearts be conformed to yours so that we might accept, nurture, and cherish all human life.
+
+Sacred Heart of Jesus, have mercy on us. Amen.
+
 \newpage
+
+\prayersection{Litanies}
 \prayertitle{Litany for Life}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/litanies/a-litany-for-life.cfm
+\label{prayer:litany_for_life}
 \note{Based on 1 Corinthians 12:31-13:8.}
 Lord, love is patient.
 Give to the mother who is tempted to abort her child the patience to endure the suffering that will bring forth new life.
@@ -1317,7 +1514,7 @@ Lord, love bears all things.
 When we are insulted or reviled for the sake of the Gospel of Life, give us the courage and the innocence of the children of God.
 Help us, Lord, to suffer for the sake of Your truth, and never to seek our own good, even in the good work we do.
 
-Lord, love believes all things
+Lord, love believes all things.
 Deliver us from every temptation to despair, Lord. When we are discouraged, give us the grace to trust in Your mercy and to know that Your love is ever victorious, even in the face of darkness, death, and hate.
 
 Lord, love hopes all things.
@@ -1330,27 +1527,36 @@ Let us trust that through His Passion we will have the strength to do Your will 
 Lord, love never fails.
 When the crusade for life seems unending and our latest initiatives have failed, when our hearts are filled with sadness or anger or fear, come to our aid, O Lord, and give us the assurance that You are ever with us, that Your mercies will not end, and that You, our Creator and our God, will bring victory to all who seek to love as You have commanded them.
 
-\prayertitle{Lenten Prayer for Life}
-% Bishop James D. Conley, Auxiliary Bishop of Denver http://www.priestsforlife.org/prayers/bishop-conley-lenten-prayer.htm
-Almighty Father and Lord of Life,
-You have entrusted to men the noble mission of safeguarding and protecting human life with the utmost care from the moment of conception to natural death (\textit{Gaudium et Spes}, No. 51).
+\prayertitle{Litany of Humility}
+% TODO make sure the bold text is easily noticeable. If not find a better way to typeset it to highlight it.
+\label{prayer:litany_of_humility}
+O Jesus! meek and humble of heart, hear me.
 
-During this holy season of Lent, a time of both penance and great hope, stir in our hearts a greater love for You and for each other.
-During these 40 days of spiritual renewal, lead us to a deeper conversion so that by living in Your light and love we may bear witness to the gift of life.
+From the desire of being esteemed, \textbf{deliver me, Jesus}.\\
+From the desire of being loved\ldots\\
+From the desire of being extolled\ldots\\
+From the desire of being honored\ldots\\
+From the desire of being praised\ldots\\
+From the desire of being preferred to others\ldots\\
+From the desire of being consulted\ldots\\
+From the desire of being approved\ldots\\
+From the fear of being humiliated\ldots\\
+From the fear of being despised\ldots\\
+From the fear of suffering rebukes\ldots\\
+From the fear of being calumniated\ldots\\
+From the fear of being forgotten\ldots\\
+From the fear of being ridiculed\ldots\\
+From the fear of being wronged\ldots\\
+From the fear of being suspected\ldots\\
 
-Lord Jesus, the firstborn of all creation, have mercy on us. 
-Accept our prayers and our fasting in atonement for the tragic sin of abortion. 
-By the merits of Your precious blood, shed for our redemption, instill in all hearts a profound respect for the gift of life and bring about an end to abortion, euthanasia, and every other assault on innocent human life.
+That others may be loved more than I, \textbf{Jesus, grant me the grace to desire it}.
 
-Reawaken in the heart of every pregnant mother a profound love for the life growing in her womb and grant to her unfailing courage to choose life for her child.
-
-Come Holy Spirit, strengthen us and give us fortitude to work tirelessly to promote a true Culture of Life, a culture that recognizes the dignity and sanctity of every person.
-Raise up men and women to serve in public office who will enact laws which will safeguard and protect all human life.
-
-Blessed Mary, Mother of God, you bore the Author of Life in your womb. 
-Through your intercession may our hearts be conformed to yours so that we might accept, nurture, and cherish all human life.
-
-Sacred Heart of Jesus, have mercy on us. Amen.
+That others may be esteemed more than I\ldots\\
+That, in the opinion of the world, others may increase and I may decrease\ldots\\
+That others may be chosen and I set aside\ldots\\
+That others may be praised and I unnoticed\ldots\\
+That others may be preferred to me in everything\ldots\\
+That others may become holier than I, provided that I may become as holy as I should\ldots\\
 
 \newpage
 
@@ -1610,11 +1816,13 @@ Amen.
 \versicle\ You have given them bread from heaven,
 
 \response\ Having all delight within it.
-Let us pray.
+
+\versicle\ Let us pray.
 O God, who in this wonderful Sacrament left us a memorial of Your Passion:
 grant, we implore You, that we may so venerate the sacred mysteries of Your Body and Blood, as always to be conscious of the fruit of Your Redemption.
 You who live and reign forever and ever.
-Amen.
+
+\response\ Amen.
 
 \prayertitle{Aspirations to Our Lord in the Blessed Sacrament}
 % https://www.ourcatholicprayers.com/aspirations.html. Also in Laudate app under the same name.
@@ -2012,6 +2220,33 @@ We also give You thanks for graciously blessing our family life so that it might
 Therefore look with kindness upon us today, and as You have sustained our communion amid joys and struggles, renew our Marriage covenant each day, increase our charity, and strengthen in us the bond of peace, so that we may for ever enjoy Your blessing.
 Through Christ our Lord. Amen.
 
+\prayertitle{For Babies About to Be Born}
+\label{prayer:babies_about_to_be_born}
+Heavenly Father, from the moment these children were conceived, You knew their names.
+In the silent first hours of their lives, as cells divided and their living flesh quickened, Your love breathed deep within and they began to grow in Your image and likeness.
+May our prayers be accompanied by choirs of angels as we await their births.
+We ask this through Your child who was formed in the Virgin’s womb and who lived and died for us, Lord, forever and ever. Amen.
+
+\prayertitle{Blessing of Parents Before the Birth of Their Child}
+\label{prayer:parents_before_birth_of_child}
+Gracious Father, Your Word, spoken in love, created the human family and, in the fullness of time, Your Son, conceived in love, restored it to Your friendship.
+Hear the prayers of parents awaiting the birth of a child, calm their fears when they are anxious.
+Watch over and support these parents and bring their child into this world safely and in good health, so that as members of Your family they may praise You and glorify You through Your Son, our Lord Jesus Christ, now and forever.
+Amen.
+
+\prayertitle{Blessing of a Mother Before Childbirth}
+\label{prayer:mother_before_childbirth}
+God has brought gladness and light to the world through the Virgin Mary's delivery of her child.
+May Christ fill your heart with His holy joy and keep you and your baby safe from harm. 
+In the name of the Father, and of the Son, and of the Holy Spirit.
+
+\prayertitle{For Travelers}
+\label{prayer:travelers}
+O Almighty and merciful God, who has commissioned Your angels to guide and protect us, command them to be our assiduous companions from our setting out until our return;
+to clothe us with their invisible protection;
+to keep from us all danger of collision, of fire, of explosion, of fall and bruises, and finally, having preserved us from all evil, and especially from sin, to guide us to our heavenly home.
+Through Jesus Christ, our Lord. Amen.
+
 \prayertitle{For a Safe Flight}
 Dear God, please watch over me as I fly out today.
 May Your hand be on the pilot and crew, Your strength be in the engineers that prepare the plane, and Your wisdom over the control teams on the ground.
@@ -2080,7 +2315,7 @@ St. Joseph, with the Blessed Virgin, your Spouse, open to me the bosom of divine
 \section{References to the Manual of Indulgences}
 \subsection{Relevant Norms}
 \newcommand{\norm}[1]{\textbf{N#1.}\newline}
-\newcommand{\subnorm}[1]{§#1.}
+\newcommand{\subnorm}[1]{\sectionsign{}#1.}
 \norm{1}
 An indulgence is a remission before God of the temporal punishment for sins, whose guilt is forgiven, which a properly disposed member of the Christian faithful obtains under certain and clearly defined conditions through the intervention of the Church, which, as the minister of Redemption, dispenses and applies authoritatively the treasury of the expiatory works of Christ and the saints.
 
@@ -2121,8 +2356,8 @@ nevertheless, one has the option of reciting any other prayer according to indiv
 % https://tex.stackexchange.com/questions/35933/indenting-a-whole-paragraph
 % package enumitem might be useful here too
 \newcommand{\grant}[2]{\subsubsection*{#1 #2}}
-\newcommand{\subgrant}[1]{§#1.}
-\newcommand{\subsubgrant}[1]{#1$^\circ$}
+\newcommand{\subgrant}[1]{\sectionsign{}#1.}
+\newcommand{\subsubgrant}[1]{#1\degreesign{}}
 \hypertarget{grant2}{\grant{2}{Act of Dedication of the Human Race to Jesus Christ the King}}
 A plenary indulgence is granted to the faithful who on the solemnity of Our Lord Jesus Christ, King of the Universe, publicly recite the act of dedication of the human race to Christ the King (\foreign{Iesu dulcissime, Redemptor});
 a partial indulgence is granted for its use in other circumstances.
@@ -2161,9 +2396,9 @@ A partial indulgence is granted to the faithful who for their personal edificati
 \hypertarget{grant17}{\grant{17}{Prayers to the Blessed Virgin Mary}}
 \subgrant{1} A plenary indulgence is granted to the faithful who
 
-\subsubgrant{1} devoutly recite the Marian rosary in a church or oratory, or in a family, a religious community, or an association of the faithful, and in general when several of the faithful gather for some honest purpose;
+\subsubgrant{1} devoutly recite the Marian rosary in a church or oratory, or in a family, a religious community, or an association of the faithful, and in general when several of the faithful gather for some honest purpose;
 
-\subsubgrant{2} devoutly join in the recitation of the rosary while it is being recited by the Supreme Pontiff and broadcast live by radio or television.
+\subsubgrant{2} devoutly join in the recitation of the rosary while it is being recited by the Supreme Pontiff and broadcast live by radio or television.
 
 In other circumstances, the indulgence will be partial.
 
@@ -2177,11 +2412,11 @@ Regarding the plenary indulgence for the recitation of the Marian rosary, the fo
 
 \subgrant{2} A partial indulgence is granted to the faithful who
 
-\subsubgrant{1} devoutly recite the canticle of the \foreign{Magnificat};
+\subsubgrant{1} devoutly recite the canticle of the \foreign{Magnificat};
 
-\subsubgrant{2} either at dawn, noon, or evening devoutly recite the \foreign{Angelus} with its accompanying versicles and prayer or, during the Easter season, the \foreign{Regina caeli} antiphon with its usual prayer;
+\subsubgrant{2} either at dawn, noon, or evening devoutly recite the \foreign{Angelus} with its accompanying versicles and prayer or, during the Easter season, the \foreign{Regina caeli} antiphon with its usual prayer;
 
-\subsubgrant{3} devoutly address the Blessed Virgin Mary with some approved prayer (e.g., \foreign{Maria, Mater gratiae}; the \foreign{Memorare}; the \foreign{Salve Regina}; the \foreign{Sancta Maria, succurre miseris}; or the \foreign{Sub tuum praesidium}.)
+\subsubgrant{3} devoutly address the Blessed Virgin Mary with some approved prayer (e.g., \foreign{Maria, Mater gratiae}; the \foreign{Memorare}; the \foreign{Salve Regina}; the \foreign{Sancta Maria, succurre miseris}; or the \foreign{Sub tuum praesidium}.)
 
 \hypertarget{grant18}{\grant{18}{Prayers to One's Guardian Angel}}
 A partial indulgence is granted to the faithful who devoutly invoke the care of their guardian Angel with a duly approved prayer (e.g. \foreign{Angele Dei}).
@@ -2201,48 +2436,48 @@ A partial indulgence is granted to the faithful who, moved by supernatural grati
 \hypertarget{grant26}{\grant{26}{Prayers of Supplication and Acts of Thanksgiving}}
 \subgrant{1} A plenary indulgence is granted to the faithful who devoutly assist either at the recitation or solemn singing of
 
-\subsubgrant{1} the \foreign{Veni Creator}, either on the first day of the year to implore divine assistance for the course of the whole year, or on the solemnity of Pentecost;
+\subsubgrant{1} the \foreign{Veni Creator}, either on the first day of the year to implore divine assistance for the course of the whole year, or on the solemnity of Pentecost;
 
-\subsubgrant{2} the \foreign{Te Deum}, on the final day of the year, to offer thanks to God for gifts received throughout the course of the entire year.
+\subsubgrant{2} the \foreign{Te Deum}, on the final day of the year, to offer thanks to God for gifts received throughout the course of the entire year.
 
-\subgrant{2} A partial indulgence is granted to the faithful who,
+\subgrant{2} A partial indulgence is granted to the faithful who,
 
-\subsubgrant{1} at the beginning and the end of the day,
+\subsubgrant{1} at the beginning and the end of the day,
 
-\subsubgrant{2} in starting and completing their work,
+\subsubgrant{2} in starting and completing their work,
 
-\subsubgrant{3} before and after meals,
+\subsubgrant{3} before and after meals,
 
 devoutly offer some legitimately approved prayer of supplication and act of thanksgiving (e.g., \foreign{Actiones nostras}; \foreign{Adsumus}; \foreign{Agimus Tibi gratias}; \foreign{Benedic, Domine}; \foreign{Domine, Deus Omnipotens}; \foreign{Exaudi nos}; the \foreign{Te Deum}; the \foreign{Veni Creator}; the \foreign{Veni Sancte Spiritus}; \foreign{Visita, quaesumus, Domine}).
 
 \hypertarget{grant28}{\grant{28}{Profession of Faith and Acts of the Theological Virtues}}
 \subgrant{2} A partial indulgence is granted to the faithful who
 
-\subsubgrant{1} renew their baptismal vows in any formula;
+\subsubgrant{1} renew their baptismal vows in any formula;
 
-\subsubgrant{2} devoutly sign themselves with the sign of the cross, using the customary words: ``In the name of the Father and of the Son and of the Holy Spirit. Amen'';
+\subsubgrant{2} devoutly sign themselves with the sign of the cross, using the customary words: ``In the name of the Father and of the Son and of the Holy Spirit. Amen'';
 
-\subsubgrant{3} devoutly recite either the Apostles' Creed or the Niceno-Constantinopolitan Creed;
+\subsubgrant{3} devoutly recite either the Apostles' Creed or the Niceno-Constantinopolitan Creed;
 
-\subsubgrant{4} recite an Act of Faith, Hope, and Charity in any legitimate formula.
+\subsubgrant{4} recite an Act of Faith, Hope, and Charity in any legitimate formula.
 
 \hypertarget{grant29}{\grant{29}{For the Faithful Departed}}
 \subgrant{1} A plenary indulgence, applicable only to the souls in purgatory, is granted to the faithful who,
 
-\subsubgrant{1} on any and each day from November 1 to 8, devoutly visit a cemetery and pray, if only mentally, for the departed;
+\subsubgrant{1} on any and each day from November 1 to 8, devoutly visit a cemetery and pray, if only mentally, for the departed;
 
-\subsubgrant{2} on All Souls' Day (or, according to the judgment of the ordinary, on the Sunday preceding or following it, or on the solemnity of All Saints), devoutly visit a church or an oratory and recite an Our Father and the Creed.
+\subsubgrant{2} on All Souls' Day (or, according to the judgment of the ordinary, on the Sunday preceding or following it, or on the solemnity of All Saints), devoutly visit a church or an oratory and recite an Our Father and the Creed.
 
-\subgrant{2} A partial indulgence, applicable only to the souls in purgatory, is granted to the faithful who
+\subgrant{2} A partial indulgence, applicable only to the souls in purgatory, is granted to the faithful who
 
-\subsubgrant{1} devoutly visit a cemetery and at least mentally pray for the dead;
+\subsubgrant{1} devoutly visit a cemetery and at least mentally pray for the dead;
 
 \subsubgrant{2} devoutly recite lauds or vespers from the Office of the Dead or the prayer ``Eternal rest''.
 
 \newpage
 \section{Prayer Sources}
 % TODO It would be nice to be able to include the label as an argument to this command, but there are problems with underscores.
-\newcommand{\urlsource}[1]{:\\{\small\url{#1}}}
+\newcommand{\urlsource}[1]{:\\{\footnotesize\url{#1}}}
 
 \nameref{prayer:lay_apostle}\urlsource{https://www.ourcatholicprayers.com/prayer-of-a-lay-apostle.html}
 
@@ -2250,9 +2485,9 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:resolution}\urlsource{https://www.ourcatholicprayers.com/prayer-of-resolution.html}
 
-%\nameref{prayer:act_of_faith}: test
-
 \nameref{prayer:new_evangelization} modified slightly from\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-new-evangelization.cfm}
+
+\nameref{prayer:profound_disabilities}\urlsource{https://www.ewtn.com/Devotionals/prayers/PrayerForLife.htm}
 
 \nameref{prayer:indifference}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-overcome-indifference.cfm}
 
@@ -2265,6 +2500,18 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 \nameref{prayer:healing_victims_abuse}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-healing-victims-of-abuse.cfm}
 
 \nameref{prayer:charity_truth}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-charity-in-truth.cfm}
+
+\nameref{prayer:short}\urlsource{https://www.ewtn.com/Devotionals/prayers/short.htm}
+
+\nameref{prayer:holy_face}\urlsource{https://www.ewtn.com/Devotionals/prayers/shroud2.htm}
+
+\nameref{prayer:Our_Lady_help_of_Christians}\urlsource{https://www.ewtn.com/Devotionals/prayers/Bosco_prayer.htm}
+
+\nameref{prayer:JPII_Lady_of_Lourdes}\urlsource{https://www.ewtn.com/Devotionals/prayers/Lourdes_2004.htm}
+
+\nameref{prayer:StMichael}\urlsource{https://www.ewtn.com/Devotionals/prayers/index.asp}
+
+\nameref{prayer:help_against_spiritual_enemies}\urlsource{https://www.ewtn.com/Devotionals/prayers/Spiritual_Enemies.htm}
 
 \nameref{prayer:defense_marriage}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-defense-of-marriage.cfm}
 
@@ -2279,4 +2526,16 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 \nameref{prayer:purgatory_closest_heaven}\urlsource{https://www.purgatorypeople.com/wp-content/uploads/2017/09/english_poorsoulscard.jpg}
 
 \nameref{prayer:graveside}\urlsource{http://www.usccb.org/prayer-and-worship/bereavement-and-funerals/prayers-for-death-and-dying.cfm}
+
+\nameref{prayer:StEphrem2}\urlsource{https://www.ewtn.com/Devotionals/prayers/Ephrem.htm}
+
+\nameref{prayer:benedict_xvi_unborn}\urlsource{https://www.ewtn.com/Devotionals/prayers/b16_unborn.htm}
+
+\nameref{prayer:litany_for_life}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/litanies/a-litany-for-life.cfm}
+
+\nameref{prayer:litany_of_humility}\urlsource{https://www.ewtn.com/Devotionals/prayers/humility.htm}
+
+\nameref{prayer:babies_about_to_be_born}, \nameref{prayer:parents_before_birth_of_child}, \nameref{prayer:mother_before_childbirth}\urlsource{https://www.ewtn.com/Devotionals/prayers/PrayerForLifeThroughouttheYear.htm}
+
+\nameref{prayer:travelers}\urlsource{https://www.ewtn.com/Devotionals/prayers/travelers.htm}
 \end{document}
