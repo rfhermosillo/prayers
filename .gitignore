@@ -3,3 +3,9 @@
 /prayers.synctex.gz
 /*.toc
 /prayers.pdf
+*.xml
+*.fdb_latexmk
+*.bcf
+*.xdv
+*.log
+*.fls
