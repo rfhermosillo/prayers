@@ -1,6 +1,5 @@
 \documentclass[12pt]{article}
 
-%\usepackage{ucs}% can use Unicode characters with this and \unichar{code}?
 \usepackage{ifxetex, ifluatex}
 
 % From https://tex.stackexchange.com/a/47579/61108
@@ -19,6 +18,7 @@
 	\usepackage{fontspec}
 \else
 	\usepackage[utf8]{inputenc}
+	\usepackage{graphicx}% for versicle/response characters
 \fi
 
 \usepackage{etoolbox}
@@ -33,6 +33,8 @@
 %\usepackage{biblatex}
 \usepackage[hyphens]{url}% https://tex.stackexchange.com/a/175451/61108
 \usepackage[colorlinks=true,urlcolor={red},linkcolor={black}]{hyperref}
+\usepackage{comment}
+\usepackage{xspace}
 
 % Disable section numbering, but keep section numbers in the table of contents
 \makeatletter
@@ -47,7 +49,7 @@
 \newcommand{\prayertitle}[1]{\subsection{#1}}
 \newcommand{\indulgencedprayertitle}[1]{\prayertitle{#1 \protect\kreuz}}
 
-\newcommand{\insertname}{(N\dots)}
+\newcommand{\insertname}{(N\dots)\xspace}
 
 % \emph can detect nested emphasis but I prefer the slanted Computer/Latin Modern font to the italics font.
 % The fontspec package, which requires XeLaTeX or LuaLaTeX, provides \emfontdeclare which sets the fonts for nested emphasis.
@@ -64,24 +66,27 @@
 \newcommand{\note}[1]{{\small{\emphasis{#1}}}\newline}
 \newcommand{\linkednote}[2]{\hyperlink{#1}{\note{#2}}}
 
+\newcommand{\instruction}[1]{\emphasis{#1}}
+
 % Unicode versicle character taken from https://unicode-table.com/en/2123/
 % Unicode response character taken from https://unicode-table.com/en/211F/
 % The fontspec package, for XeLaTeX or LuaLaTeX, is required to use Unicode characters.
-\newcommand{\versicle}{%
-	\ifxetexorluatex%
-		{\setmainfont{Times New Roman}\textbf{℣.}}%
-	\else%
-		\textbf{V.}%
-	\fi%
-}
-
-\newcommand{\response}{%
-	\ifxetexorluatex%
-		{\setmainfont{Times New Roman}\textbf{℟.}}%
-	\else%
-		\textbf{R/.}%
-	\fi%
-}
+\ifxetexorluatex%
+	\newcommand{\versicle}{{\setmainfont{Times New Roman}\textbf{℣.}}\xspace}
+	\newcommand{\response}{{\setmainfont{Times New Roman}\textbf{℟.}}\xspace}
+\else
+	% Adapted from https://tex.stackexchange.com/a/498283/61108 for pdfLaTeX
+	\makeatletter
+	\DeclareRobustCommand{\versicle}{\textbf{\vers@resp{-0.1em}{V}.}\xspace}
+	\DeclareRobustCommand{\response}{\textbf{\vers@resp{0pt}{R}.}\xspace}
+	
+	\newcommand{\vers@resp@sym}{\raisebox{0.2ex}{\rotatebox[origin=c]{-20}{$\m@th\rceil$}}}
+	
+	\newcommand{\vers@resp}[2]{%
+		{\ooalign{\hidewidth\kern#1\vers@resp@sym\hidewidth\cr#2\cr}}%
+	}
+	\makeatother
+\fi
 
 \newcommand{\sectionsign}{%
 	\ifxetexorluatex%
@@ -167,6 +172,10 @@ Thank You, my God, for the day that is ending, thank You for the coming night.
 Bring sleep to the weary, bring repose to those I love, and give me rest until tomorrow.
 
 \prayersection{Everyday Prayers}
+\prayertitle{Jesus Prayer}
+\label{prayer:Jesus}
+Lord Jesus Christ, Son of God, have mercy on me, a sinner.
+
 \prayertitle{The Grail Prayer}
 % Given by many sources on the Internet, also listed as a ``Morning Prayer'' in the Laudate app.
 Lord Jesus,
@@ -179,6 +188,13 @@ I give You my spirit that You may pray in me.
 Above all, I give You my heart that You may love in me Your Father and all mankind.
 I give You my whole self that You may grow in me, so that it is You, Lord Jesus,
 who live and work and pray in me.
+
+\prayertitle{\foreign{Aufer a me cor lapideum}}
+\label{prayer:take_heart_of_stone}
+O Lord, take away my heart of stone, my hardened heart, my uncircumcised heart and grant to me a new heart, a heart of flesh, a clean heart!
+O You who purify the heart and love the clean heart, possess my heart and dwell in it, containing it and filling it, higher than my highest and more intimate than my most intimate thoughts.
+You who are the image of all beauty and the seal of all holiness, seal my heart in Your image and seal my heart in Your mercy, O God of my heart and the God of my portion in eternity.
+Amen.
 
 \prayertitle{Prayer for Goodness}
 % My Prayer Book, p. 104
@@ -214,11 +230,55 @@ Grant it according to my particular needs this day.
 Enable me to see the task You will set before me in the daily routine of my life, and help me work hard at my appointed tasks.
 Teach me to bear patiently all the trials of suffering or failure that may come to me today. Amen.
 
+\prayertitle{\foreign{Domine Iesu, noverim me}}
+\label{prayer:noverim_me}
+Lord Jesus, let me know myself and know You,
+and desire nothing save only You.
+Let me hate myself and love You.
+Let me do everything for the sake of You.
+
+Let me humble myself and exalt You.
+Let me think of nothing except You.
+Let me die to myself and live in You.
+Let me accept whatever happens as from You.
+
+Let me banish self and follow You,
+and ever desire to follow You.
+Let me fly from myself and take refuge in You,
+that I may deserve to be defended by You.
+
+Let me fear for myself, let me fear You,
+and let me be among those who are chosen by You.
+Let me distrust myself and put my trust in You.
+Let me be willing to obey for the sake of You.
+
+Let me cling to nothing save only to You,
+and let me be poor because of You.
+Look upon me, that I may love You.
+Call me that I may see You,
+and forever enjoy You.
+Amen.
+
 \prayertitle{Prayer of Resolution}
 \label{prayer:resolution}
-Adorable Jesus, my Savior and Master, model of all perfection, I resolve -- and will try this day -- to imitate Your example, to be like You, mild, humble, chaste, zealous, charitable, and resigned.
+Adorable Jesus, my Savior and Master, model of all perfection, I resolve --- and will try this day \textemdash{} to imitate Your example, to be like You, mild, humble, chaste, zealous, charitable, and resigned.
 I will redouble my efforts to see Your image in all those I meet and deal with this day, and to be as helpful to them as I would be to You.
 I resolve to avoid this day all those sins which I have committed heretofore and which I now sincerely desire to give up forever. Amen.
+
+\prayertitle{\foreign{Pietate tua}}
+\label{prayer:pietate_tua}
+Of Your Tender Mercy, we beseech You, O Lord, loose the bonds of our sins, and through the intercession of Mary, the blessed and ever-Virgin Mother of God, together with that of Saint Joseph and Your blessed Apostles Peter and Paul, and of all Your Saints, keep us Your servants and our dwelling places in all holiness;
+cleanse from sin and endow with virtue all those who are joined to us by kindred, affinity, and friendship;
+grant to us peace and safety;
+remove far from us our enemies, both visible and invisible;
+repress all our carnal desires;
+grant us wholesome air;
+bestow Your charity upon our friends and enemies;
+guard Your city;
+preserve our Pontiff \insertname;
+defend all prelates and princes and Your entire Christian people from every adversity.
+Let Your blessing be ever upon us, and grant to all the faithful departed rest everlasting.
+Amen.
 
 \indulgencedprayertitle{An Act of Faith}
 \label{prayer:act_of_faith}
@@ -283,7 +343,7 @@ Bring fresh vigor to wavering faith; sustain our faith when it is still fragile.
 Renew our missionary zeal.
 Make us witnesses to Your goodness, full of love, of strength and of faith, for Your glory and for the salvation of the world.
 Amen.
-
+\newpage
 \prayertitle{For the New Evangelization}
 \label{prayer:new_evangelization}
 Heavenly Father, stir in my soul the desire to renew my faith and deepen my relationship with Your Son, our Lord Jesus Christ, so that I might truly believe in and live the Good News.   
@@ -319,12 +379,12 @@ Amen.
 \prayertitle{For Those with Profound Disabilities}
 \label{prayer:profound_disabilities}
 Lord Jesus Christ, 
-You know the pain of brokenness, You took our weaknesses upon Your shoulders and bore it to the wood of the cross.
+You know the pain of brokenness, You took our weaknesses upon Your shoulders and bore them to the wood of the cross.
 Hear our prayers for our brothers and sisters whose bodies fail them and whose minds are crippled by the ravages of disease.
 Implant a love for them deep within our hearts, that we, disfigured and disabled by our sin, may treasure and nurture the gifts of their lives.
-May we find You in their weakness, and console You in our care for them.
-For You are Lord, forever and ever. Amen
-\newpage
+May we find You in their weakness and console You in our care for them, for You are Lord forever and ever.
+Amen.
+
 \prayertitle{For the Aged}
 % My Prayer Book, p. 264
 Eternal Father, unchanged down the changing years, be near to those who are aged.
@@ -550,7 +610,7 @@ Have mercy on us, O Lord, have mercy on us.
 Let Your mercy, O Lord, be upon us, for we have hoped in You.
 O Lord, in You I have put my trust;
 let me never be put to shame.
-
+\newpage
 \indulgencedprayertitle{Thanksgiving for the Church}
 \linkednote{grant23}{A partial indulgence is granted for devoutly reciting this prayer from the Armenian Tradition.}
 We thank You, Almighty Father, for having prepared the holy Church for us as a haven
@@ -660,10 +720,44 @@ Give us this day our daily bread;
 and forgive us our trespasses as we forgive those who trespass against us;
 and do not let us fall into temptation, but deliver us from evil.
 
-\prayertitle{Glory Be}
-Glory be to the Father, and to the Son, and to the Holy Spirit.
-As it was in the beginning, is now, and ever shall be, in a world without end.
+\prayertitle{Gloria (Major Doxology)}
+\label{prayer:gloria}
+Glory to God in the highest, and peace on earth to men of good will.
+
+We praise You, we bless You, we adore You, we glorify You, we give You thanks for Your great glory, O Lord God, heavenly King, God the Father Almighty.
+
+O Lord Jesus Christ, only begotten Son, Lord God, Lamb of God, Son of the Father, You who take away the sins of the world, have mercy on us;
+You who take away the sins of the world, receive our prayer.
+You who sit at the right hand of the Father, have mercy on us.
+
+For You alone are the Holy One, You alone are the Lord, You alone are the Most High, Jesus Christ, with the Holy Spirit, in the glory of God the Father.
 Amen.
+
+\prayertitle{Glory Be (Minor Doxology)}
+\label{prayer:glory_be}
+Glory be to the Father, and to the Son, and to the Holy Spirit, as it was in the beginning, is now, and will be forever.
+Amen.
+
+\prayertitle{\foreign{Omnipotentia Patris}}
+\label{prayer:Omnipotentia_Patris}
+Omnipotence of the Father, help my frailty and save me from the depths of misery.
+Wisdom of the Son, direct all my thoughts, words, and deeds.
+Love of the Holy Spirit, be the source of all the operations of my mind, that they may ever be conformed to God's good pleasure.
+Amen.
+
+\prayertitle{\foreign{Adoramus te}}
+\label{prayer:adoramus_te}
+We adore You, most holy Lord Jesus Christ, here and in all Your churches that are in the whole world, and we bless You;
+because by Your Holy Cross You have redeemed the World.
+Amen.
+
+\prayertitle{\foreign{Sanctus}}
+\label{prayer:sanctus}
+Holy, holy, holy, Lord God of hosts.
+Heaven and earth are full of Your glory.
+Hosanna in the highest.
+Blessed is he who comes in the name of the Lord.
+Hosanna in the highest.
 
 \prayertitle{Short Prayer}
 \label{prayer:short}
@@ -776,7 +870,7 @@ Through that charity which bound you to the Immaculate Virgin Mother of God and 
 O most watchful Guardian of the Holy Family, defend the chosen children of Jesus Christ;
 O most loving father, ward off from us every contagion of error and corrupting influence;
 O our most mighty protector, be kind to us and from heaven assist us in our struggle with the power of darkness.
-As once you rescued the Child Jesus from deadly peril, so now protect God’s Holy Church from the snares of the enemy and from all adversity;
+As once you rescued the Child Jesus from deadly peril, so now protect God's Holy Church from the snares of the enemy and from all adversity;
 shield, too, each one of us by your constant protection, so that, supported by your example and your aid, we may be able to live piously, to die in holiness, and to obtain eternal happiness in heaven.
 Amen.
 
@@ -837,10 +931,21 @@ Confirm a lively sense of Your presence with us, and grant us patience and wisdo
 We ask this through Christ our Lord.
 Amen.
 
-\prayertitle{For Safety for a Child}
+\prayertitle{For Safety for Children}
+\label{prayer:safety_children}
 % http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-safety.cfm from Catholic Household Blessings and Prayers
 Strong and faithful God, keep our children safe from injury and harm and make them blessings to all they meet today.
 
+\prayertitle{Daily Blessing of a Child}
+\label{prayer:daily_blessing_child}
+\note{The blessing may be said by the parent at various times, such as when a child is going to play or to school, but especially when the child is going to bed each night.
+The parent makes the sign of the cross on the child's forehead or heart and says the blessing.}
+May God bless you.
+May God keep you safe.
+God be with you.
+God be in your heart.
+May God bless and protect you.
+\newpage
 \prayertitle{Husband's Prayer for his Wife}
 % My Prayer Book, p. 266
 Lord Jesus, in the heart of my heart You know my desire is for my wife's happiness.
@@ -851,7 +956,7 @@ Help us to rejoice in each other, to be helpful and thoughtful, always to be awa
 I believe we are joined to each other in You.
 Show us Your favor, Lord Jesus.
 Amen.
-\newpage
+
 \prayertitle{Prayer in Defense of Marriage}
 \label{prayer:defense_marriage}
 God our Father, we give You thanks for the gift of marriage:
@@ -924,7 +1029,7 @@ cancel our faults and their faults committed before You willingly or unwillingly
 
 Grant them rest.
 Forgive, O God, and pardon the voluntary and involuntary sins committed consciously or unconsciously by word, work, or omissions, by secret thoughts or publicly, deliberately or through error and which Your holy Name knows.
-Grant us a Christian ending without sin and unite us at the feet of Your elect when You will, where You will and how You will, without us having to blush for our sins because in this as in all things Your holy and blessed Name, the Name of our Lord Jesus Christ and of the Holy Spirit, be praised and glorified now and for all ages. Amen.
+Grant us a Christian ending without sin and unite us at the feet of Your elect when You will, where You will, and how You will, without us having to blush for our sins because in this as in all things Your holy and blessed Name, the Name of our Lord Jesus Christ and of the Holy Spirit, be praised and glorified now and for all ages. Amen.
 
 \prayertitle{For the Dead}
 \label{prayer:dead}
@@ -1053,7 +1158,7 @@ Amen.
 
 \prayertitle{For Vocations}
 % http://www.usccb.org/beliefs-and-teachings/vocations/upload/Prayer-for-Vocations-Card-2014.pdf
-God our Father, we thank You for calling men and women to serve in Your Son’s Kingdom as priests, deacons, and consecrated persons.
+God our Father, we thank You for calling men and women to serve in Your Son's Kingdom as priests, deacons, and consecrated persons.
 Send Your Holy Spirit to help others to respond generously and courageously to Your call.
 May our community of faith support vocations of sacrificial love in our youth and young adults.
 Through our Lord Jesus Christ, who lives and reigns with You in the unity of the Holy
@@ -1185,7 +1290,7 @@ my soul and my flesh.
 Grant me strength in my weakness, O Lord, and sustain me in my misery.
 Give me a grateful soul that I may never cease to recall Your benefits, O Lord most bountiful.
 Be not mindful of my many sins, but forgive me all my misdeeds.
-O Lord, disdain not my prayer - the prayer of a wretched sinner;
+O Lord, disdain not my prayer --- the prayer of a wretched sinner;
 sustain me with Your grace until the end, that it may protect me as in the past.
 It is Your grace which has taught me wisdom;
 blessed are they who follow her ways, for they shall receive the crown of glory.
@@ -1386,7 +1491,7 @@ Give us strength to be bold and joyful witnesses to the truth that every human l
 
 In Your goodness, guard our freedom to live out our faith and to follow You in all that we do.
 
-Father, we ask this in Jesus’ name, through the Holy Spirit. Amen.
+Father, we ask this in Jesus' name, through the Holy Spirit. Amen.
 
 \prayertitle{Prayer to End the Use of the Death Penalty}
 % http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-end-the-use-of-the-death-penalty.cfm
@@ -1422,13 +1527,13 @@ Amen.
 \prayertitle{Pope Benedict XVI's Prayer For The Unborn}
 \label{prayer:benedict_xvi_unborn}
 Lord Jesus, 
-You who faithfully visit and fulfill with your Presence the Church and the history of men;
+You who faithfully visit and fulfill with Your Presence the Church and the history of men;
 You who in the miraculous Sacrament of Your Body and Blood render us participants in divine Life and allow us a foretaste of the joy of eternal Life;
 we adore and bless You.
 
-Prostrated before You, source and lover of Life, truly present and alive among us, we beg You.
+Prostrated before You, source and lover of Life, truly present and alive among us, we beg You:
 
-Reawaken in us respect for every unborn life, make us capable of seeing in the fruit of the maternal womb the miraculous work of the Creator, open our hearts to generously welcoming every child that comes into life.
+Reawaken in us respect for every unborn life, make us capable of seeing in the fruit of the maternal womb the miraculous work of the Creator, open our hearts to generously welcoming every child who comes into life.
 
 Bless all families, sanctify the union of spouses, render fruitful their love.
 
@@ -1582,9 +1687,9 @@ Grant me, moreover, heartfelt sorrow for my transgressions, and the grace of a s
 Father in heaven, most merciful God, relying on Your goodness and mercy, I come to You with childlike confidence to confess my sins and to beg Your forgiveness.
 You will not reject a contrite and humble heart.
 Bless me and receive me again into Your favor.
-I realize that I have been most ungrateful to You, but I desire henceforth to keep your commandments and to do Your Will in all things.
+I realize that I have been most ungrateful to You, but I desire henceforth to keep Your commandments and to do Your Will in all things.
 
-Jesus my Savior, my Good Shepherd, I did not follow in your footsteps but have strayed far from the path that You have marked out for me.
+Jesus my Savior, my Good Shepherd, I did not follow in Your footsteps but have strayed far from the path that You have marked out for me.
 Repentant and sorrowful, I beg to be admitted again into the fold of Your faithful followers.
 I want to confess my sins with the same sincerity as I should wish to confess at the moment of my death.
 My Jesus, I beg You for the grace to examine my conscience well.
@@ -1628,7 +1733,7 @@ Through Your divine grace, without which I can do nothing, help me to live a goo
 \prayertitle{Thanksgiving After Confession}
 I return unto You, O Lord Jesus, and give You thanks that You have been pleased to cleanse me from the foul leprosy of my sins.
 Blessed be Your Name, O Lord, forever and ever.
-Truly you are a Savior Who rejects none that come unto You seriously desiring to repent, but receives them into Your favor, and numbers them with Your children.
+Truly You are a Savior Who rejects none that come unto You seriously desiring to repent, but receives them into Your favor, and numbers them with Your children.
 I acknowledge and adore Your mercy, and dedicate myself wholly to Your service hereafter.
 Assist my weakness and suffer me not again to fall into my past sins and to be separated from You;
 but so bind my heart and soul to You with the cords of Your love, that I may say with the Apostle ``Who shall separate me from the love of Christ?''
@@ -1636,7 +1741,7 @@ but so bind my heart and soul to You with the cords of Your love, that I may say
 \prayertitle{Prayer After Confession by St. Frances Xavier Cabrini}
 My dearest Jesus, I have told all my sins as well as I could.
 I tried hard to make a good confession.
-I feel sure that you have forgiven me.
+I feel sure that You have forgiven me.
 I thank You.
 It is only because of all Your sufferings that I can go to confession and free myself from my sins.
 Your Heart is full of love and mercy for poor sinners.
@@ -1657,7 +1762,7 @@ Strengthen me with the grace of Your Holy Spirit and give Your peace to my soul 
 Help me to desire always that which is pleasing and acceptable to You so that Your Will may be my will.
 Grant that I may rid myself of all unholy desires, and that for Your love I may remain unknown in this world, and be known only to You.
 
-Do not permit me to attribute to myself the good that You perform in me and through me, but rather, referring all honor to Your majesty, may I glory only in my weakness, so that renouncing sincerely all vain glory which comes from the world, I may aspire to the true and lasting glory which comes from you. Amen.
+Do not permit me to attribute to myself the good that You perform in me and through me, but rather, referring all honor to Your majesty, may I glory only in my weakness, so that renouncing sincerely all vain glory which comes from the world, I may aspire to the true and lasting glory which comes from You. Amen.
 
 \newpage
 
@@ -1724,18 +1829,18 @@ Blood of Christ, inebriate me.
 Water from the side of Christ, wash me.
 Passion of Christ, strengthen me.
 O good Jesus, hear me.
-Within thy wounds hide me.
-Suffer me not to be separated from thee.
+Within Thy wounds hide me.
+Suffer me not to be separated from Thee.
 From the malicious enemy defend me.
 In the hour of my death call me.
-And bid me come to thee,
-That with thy saints I may praise thee for ever and ever.
+And bid me come to Thee,
+that with Thy saints I may praise Thee for ever and ever.
 Amen.
 
 \indulgencedprayertitle{\foreign{En ego, O bone et dulcissime Iesu}}
 \linkednote{grant8}{A plenary indulgence is granted for devoutly reciting this prayer after Communion on any of the Fridays in Lent. A partial indulgence is granted for making an act of thanksgiving after Communion using this prayer.}
 Behold, O kind and most sweet Jesus, I cast myself upon my knees in Thy sight, and with the most fervent desire of my soul, I pray and beseech Thee that Thou wouldst impress upon my heart lively sentiments of faith, hope, and charity, with true contrition for my sins and a firm purpose of amendment;
-while with deep affection and grief of soul I ponder within myself and mentally contemplate Thy five wounds, having before my eyes the words which David the prophet put on thy lips concerning Thee:
+while with deep affection and grief of soul I ponder within myself and mentally contemplate Thy five wounds, having before my eyes the words which David the prophet put on Thy lips concerning Thee:
 ``My hands and my feet they have pierced, they have numbered all my bones.''
 
 % My Prayer book, p. 86
@@ -1792,11 +1897,11 @@ Amen.
 \newpage
 
 \prayersection{Eucharistic Adoration}
-\prayertitle{\foreign{O sacrum convivium}}
+\indulgencedprayertitle{\foreign{O sacrum convivium}}
 \linkednote{grant7}{A partial indulgence is granted for offering this prayer to Jesus present in the Blessed Sacrament.}
 O sacred banquet, in which Christ is received, the memory of His Passion is renewed, the mind is filled with grace, and a pledge of future glory is given to us.
 
-\prayertitle{\foreign{Tantum ergo}}
+\indulgencedprayertitle{\foreign{Tantum ergo}}
 \linkednote{grant7}{A plenary indulgence is granted for piously reciting the verses of this prayer after the Mass of the Lord's Supper on Holy Thursday during the solemn reposition of the Most Blessed Sacrament.
 A partial indulgence is granted for offering this prayer to Jesus present in the Blessed Sacrament.}
 Down in adoration falling,
@@ -1841,7 +1946,7 @@ We adore You, true Bread of angels.
 Do not reprove me in Your anger, Lord,
 nor punish me in Your wrath.
 Have pity on me, Lord, for I am weak;
-heal me, LORD, for my bones are shuddering.
+heal me, Lord, for my bones are shuddering.
 My soul too is shuddering greatly -- and You, Lord, how long?
 Turn back, Lord, rescue my soul;
 save me because of Your mercy.
@@ -1885,7 +1990,7 @@ Do not be like a horse or mule, without understanding;
 with bit and bridle their temper is curbed, else they will not come to you.
 
 Many are the sorrows of the wicked one, but mercy surrounds the one who trusts in the Lord.
-Be glad in the LORD and rejoice, you righteous;
+Be glad in the Lord and rejoice, you righteous;
 exult, all you upright of heart.
 
 % http://www.usccb.org/bible/psalms/38
@@ -2005,7 +2110,7 @@ Then the Lord's name will be declared on Zion, His praise in Jerusalem, when peo
 He has shattered my strength in mid-course, has cut short my days.
 I plead, O my God, do not take me in the midst of my days.
 Your years last through all generations.
-Of old You laid the earth’s foundations;
+Of old You laid the earth's foundations;
 the heavens are the work of Your hands.
 They perish, but You remain;
 they all wear out like a garment;
@@ -2052,7 +2157,7 @@ Show me the path I should walk, for I entrust my life to You.
 Rescue me, Lord, from my foes, for I seek refuge in You.
 Teach me to do Your will, for You are my God.
 May Your kind spirit guide me on ground that is level.
-For Your name’s sake, Lord, give me life;
+For Your name's sake, Lord, give me life;
 in Your righteousness lead my soul out of distress.
 In Your mercy put an end to my foes;
 all those who are oppressing my soul, for I am Your servant.
@@ -2225,7 +2330,7 @@ Through Christ our Lord. Amen.
 Heavenly Father, from the moment these children were conceived, You knew their names.
 In the silent first hours of their lives, as cells divided and their living flesh quickened, Your love breathed deep within and they began to grow in Your image and likeness.
 May our prayers be accompanied by choirs of angels as we await their births.
-We ask this through Your child who was formed in the Virgin’s womb and who lived and died for us, Lord, forever and ever. Amen.
+We ask this through Your child who was formed in the Virgin's womb and who lived and died for us, Lord, forever and ever. Amen.
 
 \prayertitle{Blessing of Parents Before the Birth of Their Child}
 \label{prayer:parents_before_birth_of_child}
@@ -2239,6 +2344,53 @@ Amen.
 God has brought gladness and light to the world through the Virgin Mary's delivery of her child.
 May Christ fill your heart with His holy joy and keep you and your baby safe from harm. 
 In the name of the Father, and of the Son, and of the Holy Spirit.
+
+\prayertitle{Thanksgiving for a Newborn or Newly Adopted Young Child}
+\label{prayer:thanksgiving_newborn}
+God, our Creator, cherish this child.
+Jesus, our Savior; protect him/her.
+Holy Spirit, our comforter, strengthen him/her.
+
+Source of all blessings, protector of infants, look with favor on this child, \insertname.
+
+Hold him/her gently in your hands.
+When he/she is reborn of water and the Holy Spirit, bring him/her into the Church, there to share in your kingdom and with us to bless Your name forever.
+We ask this through Christ our Lord.
+
+\response Amen.
+
+\instruction{The parents trace the sign of the cross on the child's forehead.}
+
+\insertname, may the Lord Jesus, who loved children, bless you and keep you in His love, now and forever.
+
+\response Amen.
+
+\prayertitle{Prayer on Bringing a Child into the Home}
+\label{prayer:bringing_child_into_home}
+Good Lord, You have tenderly loved us, and given us this home and good friends.
+May we make a true home for this child, where he/she will learn trust in us and in You.
+May his/her brothers and sisters rejoice in their own growing up as they help to care for this child.
+We ask this through Christ our Lord.
+
+\response Amen.
+
+\prayertitle{Blessing on a Child's Birthday}
+\label{prayer:blessing_child_birthday}
+\note{From Jeremiah 1:5.}
+The Lord said to Jeremiah:
+Before I formed you in the womb I knew you, before you were born I dedicated you.
+
+May God, in whose presence our ancestors walked, bless you.
+
+\response Amen.
+
+May God, who has been your shepherd from birth until now, keep you.
+
+\response Amen.
+
+May God, who saves you from all harm, give you peace.
+
+\response Amen.
 
 \prayertitle{For Travelers}
 \label{prayer:travelers}
@@ -2257,6 +2409,42 @@ Take my heart on a journey of trust and hope as I look out over the beautiful wo
 
 I travel with You.
 Calm me and cover me,
+Amen.
+
+\prayertitle{For Times of Trouble}
+\label{prayer:times_of_trouble}
+Praised be God, the Father of our Lord Jesus Christ, the Father of mercies and the God of all consolation, who comforts us in all our afflictions.
+
+May God, the source of all patience and encouragement, enable us to live in perfect harmony with one another according to the spirit of Christ Jesus.
+
+\response Amen.
+
+May the Lord make us overflow with love for one another and for all.
+May God strengthen our hearts.
+
+\response Amen
+
+God of all our days: like a parent you forgive us, and like a child you love us.
+May we love and forgive one another.
+
+\prayertitle{Prayer to St. Peregrine for Those Sick with Cancer}
+O great St. Peregrine, you have been called ``The Mighty,'' ``The Wonder-Worker,'' because of the numerous miracles which you have obtained from God for those who have had recourse to you.
+For so many years you bore in your own flesh this cancerous disease that destroys the very fiber of our being, and who had recourse to the source of all grace when the power of man could do no more.
+You were favored with the vision of Jesus coming down from His Cross to heal your affliction.
+Ask of God and Our Lady, the cure of the sick whom we entrust to you: \insertname.
+Aided in this way by your powerful intercession, we shall sing to God, now and for all eternity, a song of gratitude for His great goodness and mercy.
+Amen.
+
+\prayertitle{Prayer to St. Peregrine for Help with Cancer}
+St. Peregrine, whom Holy Mother Church has declared Patron of those suffering from cancer, I confidently turn to you for help in my present sickness.
+I beg your kind intercession.
+Ask God to relieve me of this sickness, if it be His Holy Will.
+Plead with the Blessed Virgin Mary, the Mother of Sorrows, whom you loved so tenderly and in union with whom you have suffered the pains of cancer, that she may help me with her powerful prayers and loving consolation.
+
+But if it should be God's Holy Will that I bear this sickness, obtain for me courage and strength to accept these trials from the loving hand of God with patience and resignation, because He knows what is best for the salvation of my soul.
+St. Peregrine, be my friend and patron.
+Help me to imitate you in accepting suffering, and to unite myself with Jesus Crucified and the Mother of Sorrows, as you did.
+I offer my pains to God with all the love of my heart, for His glory and the salvation of souls, especially my own.
 Amen.
 
 \prayertitle{For All about to Die}
@@ -2366,7 +2554,7 @@ a partial indulgence is granted for its use in other circumstances.
 A plenary indulgence is granted to the faithful who, on the solemnity of the Most Sacred Heart of Jesus, publicly recite the act of reparation (\foreign{Iesu dulcissime}); a partial indulgence is granted for its use in other circumstances.
 
 \hypertarget{grant7}{\grant{7}{Eucharistic Adoration and Procession}}
-\subgrant{1} A plenary indulgence is granted to the faithful who \subsubgrant{2} piously recite the verses of the \foreign{Tantum ergo} after the Mass of the Lord’s Supper on Holy Thursday during the solemn reposition of the Most Blessed Sacrament.
+\subgrant{1} A plenary indulgence is granted to the faithful who \subsubgrant{2} piously recite the verses of the \foreign{Tantum ergo} after the Mass of the Lord's Supper on Holy Thursday during the solemn reposition of the Most Blessed Sacrament.
 
 \subgrant{2} A partial indulgence is granted to the faithful who \subsubgrant{2} offer any duly approved prayer to Jesus present in the Blessed Sacrament (e.g., the \foreign{Adoro te devote}, the prayer \foreign{O sacrum convivium}, or the \foreign{Tantum ergo}).
 
@@ -2481,9 +2669,17 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:lay_apostle}\urlsource{https://www.ourcatholicprayers.com/prayer-of-a-lay-apostle.html}
 
+\nameref{prayer:Jesus}\urlsource{https://en.wikipedia.org/wiki/Jesus_Prayer}
+
+\nameref{prayer:take_heart_of_stone}\urlsource{http://www.preces-latinae.org/thesaurus/Filius/Aufer.html} (which cites the \foreign{Liturgia Horarum})
+
 \nameref{prayer:grace}\urlsource{https://www.ourcatholicprayers.com/prayers-for-grace-and-guidance.html}
 
+\nameref{prayer:noverim_me}\urlsource{http://www.preces-latinae.org/thesaurus/Filius/NoverimMe.html} (which cites \foreign{Raccolta} \#88 (Apostolic Brief, Sept. 25, 1883; S. P. Ap. Dec. 17, 1932) and \foreign{Manuale Christianum})
+
 \nameref{prayer:resolution}\urlsource{https://www.ourcatholicprayers.com/prayer-of-resolution.html}
+
+\nameref{prayer:pietate_tua}\urlsource{http://www.preces-latinae.org/thesaurus/Trinitas/Pietate.html} (which cites \foreign{Raccolta} \#50, Leo XII, Rescript in his own hand, July 9, 1828; S. P. Ap. Dec. 9, 1932)
 
 \nameref{prayer:new_evangelization} modified slightly from\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-new-evangelization.cfm}
 
@@ -2501,6 +2697,16 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:charity_truth}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-charity-in-truth.cfm}
 
+\nameref{prayer:gloria}\urlsource{http://www.preces-latinae.org/thesaurus/Trinitas/Gloria.html}
+
+\nameref{prayer:glory_be}\urlsource{http://www.preces-latinae.org/thesaurus/Basics/GloriaPatri.html}
+
+\nameref{prayer:Omnipotentia_Patris}\urlsource{http://www.preces-latinae.org/thesaurus/Trinitas/Omnipotentia.html} (which cites \foreign{Raccolta}, \#53; S. C. Ind. March 15, 1890; S. P. Ap., Sept. 12, 1936.)
+
+\nameref{prayer:adoramus_te}\urlsource{http://www.preces-latinae.org/thesaurus/Filius/Adoramus.html}
+
+\nameref{prayer:sanctus}\urlsource{http://www.preces-latinae.org/thesaurus/Trinitas/Sanctus.html}
+
 \nameref{prayer:short}\urlsource{https://www.ewtn.com/Devotionals/prayers/short.htm}
 
 \nameref{prayer:holy_face}\urlsource{https://www.ewtn.com/Devotionals/prayers/shroud2.htm}
@@ -2512,6 +2718,10 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 \nameref{prayer:StMichael}\urlsource{https://www.ewtn.com/Devotionals/prayers/index.asp}
 
 \nameref{prayer:help_against_spiritual_enemies}\urlsource{https://www.ewtn.com/Devotionals/prayers/Spiritual_Enemies.htm}
+
+\nameref{prayer:safety_children}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-safety.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+
+\nameref{prayer:daily_blessing_child}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/daily-blessing-of-a-child.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
 
 \nameref{prayer:defense_marriage}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-defense-of-marriage.cfm}
 
@@ -2537,5 +2747,13 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:babies_about_to_be_born}, \nameref{prayer:parents_before_birth_of_child}, \nameref{prayer:mother_before_childbirth}\urlsource{https://www.ewtn.com/Devotionals/prayers/PrayerForLifeThroughouttheYear.htm}
 
+\nameref{prayer:thanksgiving_newborn}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/thanksgiving-for-a-newborn-or-newly-adopted-young-child.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+
+\nameref{prayer:bringing_child_into_home}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-on-bringing-a-child-into-the-home.cfm}
+
+\nameref{prayer:blessing_child_birthday}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/child-birthday-blessing.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+
 \nameref{prayer:travelers}\urlsource{https://www.ewtn.com/Devotionals/prayers/travelers.htm}
+
+\nameref{prayer:times_of_trouble}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayers-for-times-of-trouble.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
 \end{document}
