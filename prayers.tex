@@ -29,11 +29,13 @@
 \usepackage{parskip}
 \usepackage{wasysym}
 %\usepackage[margin=0.5in]{geometry}
-%\usepackage{biblatex}
 \usepackage[hyphens]{url}% https://tex.stackexchange.com/a/175451/61108
-\usepackage[colorlinks=true,urlcolor={red},linkcolor={black}]{hyperref}
+\usepackage[colorlinks=true,urlcolor={red},linkcolor={black},citecolor={red}]{hyperref}
 \usepackage{comment}
 \usepackage{xspace}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{prayers.bib}
 
 % Disable section numbering, but keep section numbers in the table of contents
 \makeatletter
@@ -445,7 +447,7 @@ Amen.
 \prayertitle{For Healing Victims of Abuse}
 \label{prayer:healing_victims_abuse}
 God of endless love, ever caring, ever strong, always present, always just:
-You gave Your only Son to save us by the blood of His cross.
+You gave Your only Son to save us by the Blood of His cross.
 
 Gentle Jesus, shepherd of peace, join to Your own suffering the pain of all who have been hurt in body, mind, and spirit by those who betrayed the trust placed in them.
 
@@ -572,11 +574,11 @@ Teach us to acknowledge always the good things Your infinite Love has given us.
 Help us to love You with all our hearts and all our strength as our expression of thanksgiving for Your many blessings.
 Fill our hearts with this spirit of gratitude.
 
-Father of mercy, we thank You for Your kindness and ask You to free us from all evil that we may serve You with generous hearts and in happiness all our days.
+Father of Mercy, we thank You for Your Kindness and ask You to free us from all evil that we may serve You with generous hearts and in happiness all our days.
 Make us always aware of Your mercies that with truly thankful hearts, we may make known Your praise by giving wholeheartedly of ourselves, and by true holiness of lives all honor and glory will be Yours throughout all ages.
 
-Almighty God, Father of all mercies, we Your unworthy servants give You humble thanks for all Your Goodness and loving kindness to us and to all men, particularly our families, friends, and loved ones.
-We bless You for our creation and all the blessings of this life, but above all, for Your incomparable and undying love in the redemption of the world by Your Son, our Lord and Savior Jesus Christ.
+Almighty God, Father of all mercies, we Your unworthy servants give You humble thanks for all Your Goodness and loving Kindness to us and to all men, particularly our families, friends, and loved ones.
+We bless You for our creation and all the blessings of this life, but above all, for Your incomparable and undying Love in the redemption of the world by Your Son, our Lord and Savior Jesus Christ.
 Amen.
 
 \indulgencedprayertitle{\foreign{Te Deum}}
@@ -664,7 +666,7 @@ and that all tongues and peoples may form one great choir to praise You King and
 Amen.
 
 \prayertitle{For Civic Leaders}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-civic-leaders.cfm which cites Catholic Household Blessings and Prayers book
+\label{prayer:civic-leaders}
 God our Father, You guide everything in wisdom and love.
 Accept the prayers we offer for our nation.
 In Your Goodness, watch over those in authority so that people everywhere may enjoy freedom, security, and peace.
@@ -672,7 +674,7 @@ We ask this through Christ our Lord.
 Amen.
 
 \prayertitle{Prayer for Basic Rights}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-basic-rights.cfm which cites Being Neighbor: The Catechism and Social Justice, USCCB, April 1998
+\label{prayer:basic-rights}
 Lord of Wisdom, awaken us to our duty to care for the basic needs of all people.
 Strengthen with hope people denied their human rights and freedoms.
 Provide us all with the voice to cry out for justice for the poor and the oppressed.
@@ -782,7 +784,7 @@ My God, I believe, I adore, I hope, and I love You. I ask pardon for all those w
 
 \prayertitle{F\'{a}tima Trinitarian Prayer}
 % https://en.wikipedia.org/wiki/F%C3%A1tima_prayers
-Most Holy Trinity - Father, Son, and Holy Spirit - I adore You profoundly, and I offer You the Most Precious Body, Blood, Soul and Divinity of Jesus Christ, present in all the tabernacles of the world, in reparation for the outrages, sacrileges, and indifferences by which He is offended.
+Most Holy Trinity --- Father, Son, and Holy Spirit --- I adore You profoundly, and I offer You the Most Precious Body, Blood, Soul, and Divinity of Jesus Christ, present in all the tabernacles of the world, in reparation for the outrages, sacrileges, and indifferences by which He is offended.
 And by the infinite merits of His most Sacred Heart and the Immaculate Heart of Mary, I beg the conversion of poor sinners.
 
 \prayertitle{F\'{a}tima Rosary Decade Prayer}
@@ -834,7 +836,7 @@ Amen.
 \prayersection{Prayers to the Saints}
 \indulgencedprayertitle{\foreign{Maria, Mater gratiae}}
 \linkednote{grant17}{A partial indulgence is granted for devoutly addressing the Blessed Virgin Mary with this prayer.}
-Mary, Mother of grace and Mother of mercy, shield me from the enemy and receive me at the hour of my death.
+Mary, Mother of Grace and Mother of Mercy, shield me from the enemy and receive me at the hour of my death.
 
 \prayertitle{The Hail Mary}
 % My Prayer Book, p. 25
@@ -1030,7 +1032,7 @@ Through Christ our Lord. Amen.
 
 \prayertitle{For a Woman Deceased}
 % My Prayer Book, p. 267
-O Lord, we beg of You, through Your loving kindness, have mercy on the soul of Your servant \insertname, and now that she is set free from the defilements of this mortal flesh, restore her to her heritage of everlasting salvation.
+O Lord, we beg of You, through Your loving Kindness, have mercy on the soul of Your servant \insertname, and now that she is set free from the defilements of this mortal flesh, restore her to her heritage of everlasting salvation.
 Through Christ our Lord. Amen.
 
 \indulgencedprayertitle{Prayer for the Faithful Departed}
@@ -1428,7 +1430,7 @@ not my will according to nature, O Lord, but Your Will and my will according to 
 
 \prayersection{Pro-Life}
 \prayertitle{For Life and Dignity}
-% http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-life-and-dignity.cfm from Being Neighbor: The Catechism and Social Justice, USCCB, April 1998
+\label{prayer:life-dignity}
 Eternal God, creator and sustainer of life, bless us with the courage to defend all life from conception to natural death.
 Bless us with the strength to respect all peoples from east to west, from north to south,
 so that we may truly follow the call of Jesus to be neighbor.
@@ -1907,7 +1909,7 @@ while with deep affection and grief of soul I ponder within myself and mentally 
 \prayertitle{Prayer of St. Thomas Aquinas after Holy Communion}
 Lord, Father all-powerful and ever-living God,
 
-I thank You, for even though I am a sinner, Your unprofitable servant, not because of my worth but in the kindness of Your Mercy, You have fed me with the precious Body and Blood of Your Son, our Lord Jesus Christ.
+I thank You, for even though I am a sinner, Your unprofitable servant, not because of my worth but in the Kindness of Your Mercy, You have fed me with the precious Body and Blood of Your Son, our Lord Jesus Christ.
 
 I pray that this holy communion may not bring me condemnation and punishment but forgiveness and salvation.
 
@@ -2577,13 +2579,14 @@ Holy Mary, pray for me.
 O Mary, mother of grace, mother of mercy, protect me from the enemy, and receive me at the hour of death.
 
 St. Joseph, pray for me.
-St. Joseph, with the Blessed Virgin, your Spouse, open to me the bosom of divine mercy.
+St. Joseph, with the Blessed Virgin, your Spouse, open to me the bosom of divine Mercy.
 
 % Prayers in times of war: http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-troops.cfm
 
 \newpage
 \appendix
 \section{References to the Manual of Indulgences}
+The following norms and grants which are relevant to the given prayers are reproduced from \citetitle[the][]{manual-indulgences}:
 \subsection{Relevant Norms}
 \newcommand{\norm}[1]{\textbf{N#1.}\newline}
 \newcommand{\subnorm}[1]{\sectionsign{}#1.}
@@ -2770,7 +2773,7 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:indifference}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-to-overcome-indifference.cfm}
 
-\nameref{prayer:poor}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-poor.cfm} (which cites \textit{Being Neighbor, the Catechism and Social Justice}, Catholic Campaign for Human Development, ©1998 United States Conference of Catholic Bishops)
+\nameref{prayer:poor}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-the-poor.cfm} (which cites \citetitle{being-neighbor})
 
 \nameref{prayer:marginalized} modified from\urlsource{http://www.usccb.org/about/pro-life-activities/prayers/intercessory-prayers-the-marginalized.cfm}
 
@@ -2779,6 +2782,10 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 \nameref{prayer:healing_victims_abuse}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-healing-victims-of-abuse.cfm}
 
 \nameref{prayer:charity_truth}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-charity-in-truth.cfm}
+
+\nameref{prayer:civic-leaders}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-civic-leaders.cfm} which cites \citetitle{household-prayers}.
+
+\nameref{prayer:basic-rights}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-basic-rights.cfm} which cites \citetitle{being-neighbor}.
 
 \nameref{prayer:gloria}\urlsource{http://www.preces-latinae.org/thesaurus/Trinitas/Gloria.html}
 
@@ -2804,7 +2811,7 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:parent}\urlsource{https://www.loyolapress.com/our-catholic-faith/prayer/family-prayers/a-parents-prayer}
 
-\nameref{prayer:safety_children}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-safety.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+\nameref{prayer:safety_children}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-safety.cfm} which cites \citetitle{household-prayers}.
 
 \nameref{prayer:defense_marriage}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-defense-of-marriage.cfm}
 
@@ -2822,6 +2829,8 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:StEphrem2}\urlsource{https://www.ewtn.com/Devotionals/prayers/Ephrem.htm}
 
+\nameref{prayer:life-dignity}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-for-life-and-dignity.cfm} which cites \citetitle{being-neighbor}.
+
 \nameref{prayer:benedict_xvi_unborn}\urlsource{https://www.ewtn.com/Devotionals/prayers/b16_unborn.htm}
 
 \nameref{prayer:litany_for_life}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/litanies/a-litany-for-life.cfm}
@@ -2830,17 +2839,21 @@ devoutly offer some legitimately approved prayer of supplication and act of than
 
 \nameref{prayer:blessing_child}\urlsource{https://aleteia.org/2017/01/03/blessing-your-children-its-not-just-for-sneezes/} which cites the book \textit{The Catholic Gentleman}.
 
-\nameref{prayer:blessing_child_birthday}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/child-birthday-blessing.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+\nameref{prayer:blessing_child_birthday}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/child-birthday-blessing.cfm} which cites \citetitle{household-prayers}.
 
 \nameref{prayer:travel_blessing}\urlsource{https://aleteia.org/2017/01/03/blessing-your-children-its-not-just-for-sneezes/}
 
 \nameref{prayer:babies_about_to_be_born}, \nameref{prayer:parents_before_birth_of_child}, \nameref{prayer:mother_before_childbirth}\urlsource{https://www.ewtn.com/Devotionals/prayers/PrayerForLifeThroughouttheYear.htm}
 
-\nameref{prayer:thanksgiving_newborn}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/thanksgiving-for-a-newborn-or-newly-adopted-young-child.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+\nameref{prayer:thanksgiving_newborn}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/thanksgiving-for-a-newborn-or-newly-adopted-young-child.cfm} which cites \citetitle{household-prayers}.
 
 \nameref{prayer:bringing_child_into_home}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayer-on-bringing-a-child-into-the-home.cfm}
 
 \nameref{prayer:travelers}\urlsource{https://www.ewtn.com/Devotionals/prayers/travelers.htm}
 
-\nameref{prayer:times_of_trouble}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayers-for-times-of-trouble.cfm} which cites the book \textit{Catholic Household Blessings and Prayers}.
+\nameref{prayer:times_of_trouble}\urlsource{http://www.usccb.org/prayer-and-worship/prayers-and-devotions/prayers/prayers-for-times-of-trouble.cfm} which cites \citetitle{household-prayers}.
+
+% Add a section so the bibliography appears in the Table of Contents, and use no heading for the bibliography since the section title will act as the heading.
+\section{Bibliography}
+\printbibliography[heading=none]
 \end{document}
