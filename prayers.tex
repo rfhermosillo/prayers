@@ -2,7 +2,7 @@
 
 \usepackage{ifxetex, ifluatex}
 
-% From https://tex.stackexchange.com/a/47579/61108
+% From https://tex.stackexchange.com/a/47579
 \newif\ifxetexorluatex
 \ifxetex
 	\xetexorluatextrue
@@ -76,7 +76,7 @@
 	\newcommand{\versicle}{{\setmainfont{Times New Roman}\textbf{℣.}}\xspace}
 	\newcommand{\response}{{\setmainfont{Times New Roman}\textbf{℟.}}\xspace}
 \else
-	% Adapted from https://tex.stackexchange.com/a/498283/61108 for pdfLaTeX
+	% Adapted from https://tex.stackexchange.com/a/498283 for pdfLaTeX
 	\makeatletter
 	\DeclareRobustCommand{\versicle}{\textbf{\vers@resp{-0.1em}{V}.}\xspace}
 	\DeclareRobustCommand{\response}{\textbf{\vers@resp{0pt}{R}.}\xspace}
